@@ -1,0 +1,724 @@
+#suite check_accuracy_errors
+
+#test check_accuracy_errors_loop
+char accuracy[] = "abceghjkmnopqrstuvwxyABCEGHJKMNOPQRSTUVWXY !\"#$%%&'()*+,-./:;<=>?@[]^_`{|}~\\\t\n\r";
+Accuracy epsilon;
+for (char *p = accuracy; *p != '\0'; ++p) {
+  ck_assert(check_accuracy(p, &epsilon) == 0);
+}
+
+#test check_accuracy_errors_plus
+char accuracy[] = "+";
+Accuracy epsilon;
+  ck_assert(check_accuracy(accuracy, &epsilon) == 0);
+
+
+#test check_accuracy_errors_minus
+char accuracy[] = "-";
+Accuracy epsilon;
+  ck_assert(check_accuracy(accuracy, &epsilon) == 0);
+
+
+
+
+#suite check_accuracy_letter
+
+
+#test check_accuracy_letter_i
+char accuracy[] = "i";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 0);
+
+#test check_accuracy_letter_I
+char accuracy[] = "I";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 0);
+
+#test check_accuracy_letter_f
+char accuracy[] = "f";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'f');
+  
+#test check_accuracy_letter_F
+char accuracy[] = "F";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'f');
+
+#test check_accuracy_letter_d
+char accuracy[] = "d";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'd');
+
+#test check_accuracy_letter_D
+char accuracy[] = "D";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'd');
+
+#test check_accuracy_letter_l
+char accuracy[] = "l";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+#test check_accuracy_letter_L
+char accuracy[] = "L";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+#test check_accuracy_letter_z
+char accuracy[] = "z";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'z');
+
+#test check_accuracy_letter_Z
+char accuracy[] = "Z";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'z');
+
+#test check_accuracy_letter_empty_string
+char accuracy[] = "";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+#test check_accuracy_letter_NULL
+char *accuracy = NULL;
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+
+
+#suite check_accuracy_number
+
+
+#test check_accuracy_number_0
+char accuracy[] = "0";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 0);
+
+#test check_accuracy_number_PLUS0
+char accuracy[] = "+0";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 0);
+
+#test check_accuracy_number_MINUS0
+char accuracy[] = "-0";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 0);
+
+#test check_accuracy_number_1
+char accuracy[] = "1";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 1);
+
+#test check_accuracy_number_PLUS2
+char accuracy[] = "+2";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 2);
+
+#test check_accuracy_number_MINUS3
+char accuracy[] = "-3";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, -3);
+
+#test check_accuracy_number_45
+char accuracy[] = "45";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 45);
+
+#test check_accuracy_number_PLUS98
+char accuracy[] = "+98";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 98);
+
+#test check_accuracy_number_MINUS67
+char accuracy[] = "-67";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, -67);
+
+#test check_accuracy_number_111
+char accuracy[] = "111";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 111);
+
+#test check_accuracy_number_PLUS308
+char accuracy[] = "+308";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 308);
+
+#test check_accuracy_number_MINUS940
+char accuracy[] = "-940";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, -940);
+
+#test check_accuracy_number_2000
+char accuracy[] = "2000";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 2000);
+
+#test check_accuracy_number_PLUS1006
+char accuracy[] = "+1006";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 1006);
+
+#test check_accuracy_number_MINUS3597
+char accuracy[] = "-3597";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, -3597);
+
+#test check_accuracy_number_MAX
+char accuracy[] = "4932";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 4932);
+
+#test check_accuracy_number_PLUS_MAX
+char accuracy[] = "+4932";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 4932);
+
+#test check_accuracy_number_MINUS_MAX
+char accuracy[] = "-4932";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, -4932);
+
+#test check_accuracy_number_MORE_MAX
+char accuracy[] = "4933";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+#test check_accuracy_number_MINUS_MORE_MAX
+char accuracy[] = "-4933";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'z');
+
+#test check_accuracy_number_MORE_DIGITS
+char accuracy[] = "10000";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+#test check_accuracy_number_MINUS_MORE_DIGITS
+char accuracy[] = "-246712";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'z');
+
+
+
+#suite check_accuracy_doubtful_but_ok
+
+
+#test check_accuracy_doubtful_but_ok_i
+char accuracy[] = "ite4s";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 0);
+
+#test check_accuracy_doubtful_but_ok_I
+char accuracy[] = "I34g";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 0);
+
+#test check_accuracy_doubtful_but_ok_f
+char accuracy[] = "fi";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'f');
+  
+#test check_accuracy_doubtful_but_ok_F
+char accuracy[] = "F.019";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'f');
+
+#test check_accuracy_doubtful_but_ok_d
+char accuracy[] = "d+8";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'd');
+
+#test check_accuracy_doubtful_but_ok_D
+char accuracy[] = "D 6578";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'd');
+
+#test check_accuracy_doubtful_but_ok_l
+char accuracy[] = "l\n";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+#test check_accuracy_doubtful_but_ok_L
+char accuracy[] = "L-5";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+#test check_accuracy_doubtful_but_ok_z
+char accuracy[] = "zyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'z');
+
+#test check_accuracy_doubtful_but_ok_Z
+char accuracy[] = "Zoom";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'z');
+
+#test check_accuracy_doubtful_but_ok_number_and_char_test1
+char accuracy[] = "4L";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 4);
+
+#test check_accuracy_doubtful_but_ok_number_and_char_test2
+char accuracy[] = "-87f";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, -87);
+
+#test check_accuracy_doubtful_but_ok_number_and_char_test3
+char accuracy[] = "+399d";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 399);
+
+#test check_accuracy_doubtful_but_ok_number_and_char_test4
+char accuracy[] = "-1845Z";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, -1845);
+
+#test check_accuracy_doubtful_but_ok_big_number_and_char
+char accuracy[] = "39977i";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == TYPE_PRECISION);
+  ck_assert(epsilon.value.precision == 'l');
+
+#test check_accuracy_doubtful_but_ok_number_and_point
+char accuracy[] = "-75.98";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, -75);
+
+#test check_accuracy_doubtful_but_ok_number_and_plus
+char accuracy[] = "+2+8";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 2);
+
+#test check_accuracy_doubtful_but_ok_number_and_minus
+char accuracy[] = "0-8";
+Accuracy epsilon;
+int res = check_accuracy(accuracy, &epsilon);
+  ck_assert(res == 1);
+  ck_assert(epsilon.type == NUMBER_PRECISION);
+  ck_assert_int_eq(epsilon.value.ten_power, 0);
+
+
+
+#suite ascertain_equation_case_error
+
+
+#test ascertain_equation_case_error_a_is_nan
+long double a = NAN;
+long double b = 1;
+long double c = 2;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_b_is_nan
+long double a = 1;
+long double b = NAN;
+long double c = 2;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_c_is_nan
+long double a = 1;
+long double b = 2;
+long double c = NAN;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_a_is_inf
+long double a = INFINITY;
+long double b = 1;
+long double c = 2;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_b_is_inf
+long double a = 1;
+long double b = INFINITY;
+long double c = 2;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_c_is_inf
+long double a = 1;
+long double b = 2;
+long double c = INFINITY;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_a_is_minus_inf
+long double a = -INFINITY;
+long double b = 1;
+long double c = 2;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_b_is_minus_inf
+long double a = 1;
+long double b = -INFINITY;
+long double c = 2;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_c_is_minus_inf
+long double a = 1;
+long double b = 2;
+long double c = -INFINITY;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_ab_not_finite
+long double a = INFINITY;
+long double b = -INFINITY;
+long double c = 2;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_ac_not_finite
+long double a = NAN;
+long double b = 3;
+long double c = -INFINITY;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_bc_not_finite
+long double a = -2;
+long double b = NAN;
+long double c = NAN;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+#test ascertain_equation_case_error_all_not_finite
+long double a = -INFINITY;
+long double b = INFINITY;
+long double c = INFINITY;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ERROR_INPUT);
+
+
+
+#suite ascertain_equation_case_zeros
+
+
+#test ascertain_equation_case_zeros_abc
+long double a = 0;
+long double b = 0;
+long double c = 0;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_ABC);
+
+#test ascertain_equation_case_zeros_ab_test1
+long double a = 0;
+long double b = 0;
+long double c = -5.4;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_AB);
+
+#test ascertain_equation_case_zeros_ab_test2
+long double a = 0;
+long double b = 0;
+long double c = 857;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_AB);
+
+#test ascertain_equation_case_zeros_ac
+long double a = 0;
+long double b = 8464.555;
+long double c = 0;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_A);
+
+#test ascertain_equation_case_zeros_a
+long double a = 0;
+long double b = 643;
+long double c = 23.1;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_A);
+
+#test ascertain_equation_case_zeros_b_test_1
+long double a = -8115;
+long double b = 0;
+long double c = 45453.55444;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_B);
+
+#test ascertain_equation_case_zeros_b_test_2
+long double a = 0.00075;
+long double b = 0;
+long double c = 7777;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_B);
+
+#test ascertain_equation_case_zeros_c_test_1
+long double a = -0.00001;
+long double b = -0.0004;
+long double c = 0;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_C);
+
+#test ascertain_equation_case_zeros_c_test_2
+long double a = 1.23456;
+long double b = -6666;
+long double c = 0;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == ZERO_C);
+
+
+
+#suite ascertain_equation_case_usual
+
+
+#test ascertain_equation_case_usual_test1
+long double a = 2;
+long double b = 3;
+long double c = 4;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == USUAL);
+  ck_assert_ldouble_eq(bb, 9);
+  ck_assert_ldouble_eq(ac4, 32);
+
+#test ascertain_equation_case_usual_test2
+long double a = 57892;
+long double b = -0.0625;
+long double c = -9.125;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == USUAL);
+  ck_assert_ldouble_eq(bb, 0.00390625L);
+  ck_assert_ldouble_eq(ac4, -2113058);
+
+#test ascertain_equation_case_usual_test3
+long double a = -1e100L;
+long double b = 1e-100L;
+long double c = 4e200L;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == USUAL);
+  ck_assert_ldouble_eq_tol(bb, 1e-200L, 1e-212L);
+  ck_assert_ldouble_eq_tol(ac4, -1.6e301L, 1e289L);
+
+#test ascertain_equation_case_usual_test4
+long double a = -5e-2000L;
+long double b = -7e415L;
+long double c = -4e200L;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == USUAL);
+  ck_assert_ldouble_eq_tol(bb, 4.9e831L, 1e819L);
+  ck_assert_ldouble_eq_tol(ac4, 8e-1799L, 1e-1787L);
+
+
+
+#suite ascertain_equation_case_small_discriminant
+
+
+#test ascertain_equation_case_small_discriminant
+long double a = 1e-2000L;
+long double b = 1e-2467L;
+long double c = 1e-2933L;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == SMALL_BB_AND_AC4);
+
+
+
+#suite ascertain_equation_case_big_discriminant
+
+
+#test ascertain_equation_case_big_discriminant_bb_and_ac4
+long double a = 1e2000L;
+long double b = 1e2467L;
+long double c = 1e2932L;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == BIG_BB_AND_AC4);
+
+#test ascertain_equation_case_big_discriminant_bb
+long double a = 1e200L;
+long double b = -1e2467L;
+long double c = 1e293L;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == BIG_BB);
+
+#test ascertain_equation_case_big_discriminant_ac4
+long double a = -1e2000L;
+long double b = 1e246L;
+long double c = 1e2932L;
+long double bb, ac4;
+EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+  ck_assert(result == BIG_AC4);

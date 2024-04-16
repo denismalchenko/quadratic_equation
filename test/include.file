@@ -1,0 +1,7 @@
+#include <float.h>
+#include <math.h>
+#include <complex.h>
+
+#include "src/quadratic_equation.h"
+#include "src/helpers/quadeq_helpers.h"
+
