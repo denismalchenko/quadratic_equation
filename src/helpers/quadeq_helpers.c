@@ -10,23 +10,23 @@ int check_accuracy(const char *accuracy, Accuracy *epsilon) {
   if (accuracy == NULL || *accuracy == '\0' || *accuracy == 'l' ||
       *accuracy == 'L') {
     *epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
-    return 1;
+    return 0;
   }
   if (*accuracy == 'd' || *accuracy == 'D') {
     *epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'd'};
-    return 1;
+    return 0;
   }
   if (*accuracy == 'f' || *accuracy == 'F') {
     *epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'f'};
-    return 1;
+    return 0;
   }
   if (*accuracy == 'i' || *accuracy == 'I') {
     *epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 0};
-    return 1;
+    return 0;
   }
   if (*accuracy == 'z' || *accuracy == 'Z') {
     *epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'z'};
-    return 1;
+    return 0;
   }
   int sign = (*accuracy == '-') ? -1 : 1;
   if (*accuracy == '-' || *accuracy == '+') {
@@ -50,9 +50,9 @@ int check_accuracy(const char *accuracy, Accuracy *epsilon) {
       *epsilon = (Accuracy){.type = NUMBER_PRECISION,
                             .value.ten_power = sign * ten_power};
     }
-    return 1;
+    return 0;
   }
-  return 0;
+  return 1;
 }
 
 EquationCases ascertain_equation_case(long double a, long double b,
@@ -76,4 +76,9 @@ EquationCases ascertain_equation_case(long double a, long double b,
     return isinf(*bb) ? (isinf(*ac4) ? BIG_BB_AND_AC4 : BIG_BB) : BIG_AC4;
 
   return USUAL;
+}
+
+int is_discriminant_near_zero(long double discriminant, Accuracy epsilon,
+                              long double bb) {
+  return -1
 }

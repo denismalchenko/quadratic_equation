@@ -4,19 +4,19 @@
 char accuracy[] = "abceghjkmnopqrstuvwxyABCEGHJKMNOPQRSTUVWXY !\"#$%%&'()*+,-./:;<=>?@[]^_`{|}~\\\t\n\r";
 Accuracy epsilon;
 for (char *p = accuracy; *p != '\0'; ++p) {
-  ck_assert(check_accuracy(p, &epsilon) == 0);
+  ck_assert(check_accuracy(p, &epsilon) == 1);
 }
 
 #test check_accuracy_errors_plus
 char accuracy[] = "+";
 Accuracy epsilon;
-  ck_assert(check_accuracy(accuracy, &epsilon) == 0);
+  ck_assert(check_accuracy(accuracy, &epsilon) == 1);
 
 
 #test check_accuracy_errors_minus
 char accuracy[] = "-";
 Accuracy epsilon;
-  ck_assert(check_accuracy(accuracy, &epsilon) == 0);
+  ck_assert(check_accuracy(accuracy, &epsilon) == 1);
 
 
 
@@ -28,7 +28,7 @@ Accuracy epsilon;
 char accuracy[] = "i";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
@@ -36,7 +36,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "I";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
@@ -44,7 +44,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "f";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'f');
   
@@ -52,7 +52,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "F";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'f');
 
@@ -60,7 +60,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "d";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'd');
 
@@ -68,7 +68,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "D";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'd');
 
@@ -76,7 +76,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "l";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -84,7 +84,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "L";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -92,7 +92,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "z";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'z');
 
@@ -100,7 +100,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "Z";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'z');
 
@@ -108,7 +108,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -116,7 +116,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char *accuracy = NULL;
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -129,7 +129,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "0";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
@@ -137,7 +137,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "+0";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
@@ -145,7 +145,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-0";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
@@ -153,7 +153,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "1";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 1);
 
@@ -161,7 +161,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "+2";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 2);
 
@@ -169,7 +169,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-3";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, -3);
 
@@ -177,7 +177,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "45";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 45);
 
@@ -185,7 +185,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "+98";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 98);
 
@@ -193,7 +193,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-67";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, -67);
 
@@ -201,7 +201,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "111";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 111);
 
@@ -209,7 +209,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "+308";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 308);
 
@@ -217,7 +217,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-940";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, -940);
 
@@ -225,7 +225,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "2000";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 2000);
 
@@ -233,7 +233,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "+1006";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 1006);
 
@@ -241,7 +241,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-3597";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, -3597);
 
@@ -249,7 +249,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "4932";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 4932);
 
@@ -257,7 +257,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "+4932";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 4932);
 
@@ -265,7 +265,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-4932";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, -4932);
 
@@ -273,7 +273,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "4933";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -281,7 +281,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-4933";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'z');
 
@@ -289,7 +289,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "10000";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -297,7 +297,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-246712";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'z');
 
@@ -310,7 +310,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "ite4s";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
@@ -318,7 +318,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "I34g";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
@@ -326,7 +326,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "fi";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'f');
   
@@ -334,7 +334,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "F.019";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'f');
 
@@ -342,7 +342,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "d+8";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'd');
 
@@ -350,7 +350,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "D 6578";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'd');
 
@@ -358,7 +358,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "l\n";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -366,7 +366,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "L-5";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -374,7 +374,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "zyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'z');
 
@@ -382,7 +382,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "Zoom";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'z');
 
@@ -390,7 +390,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "4L";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 4);
 
@@ -398,7 +398,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-87f";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, -87);
 
@@ -406,7 +406,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "+399d";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 399);
 
@@ -414,7 +414,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-1845Z";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, -1845);
 
@@ -422,7 +422,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "39977i";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == TYPE_PRECISION);
   ck_assert(epsilon.value.precision == 'l');
 
@@ -430,7 +430,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "-75.98";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, -75);
 
@@ -438,7 +438,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "+2+8";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 2);
 
@@ -446,7 +446,7 @@ int res = check_accuracy(accuracy, &epsilon);
 char accuracy[] = "0-8";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
-  ck_assert(res == 1);
+  ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 

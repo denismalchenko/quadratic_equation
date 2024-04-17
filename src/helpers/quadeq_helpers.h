@@ -38,4 +38,7 @@ EquationCases ascertain_equation_case(long double a, long double b,
                                       long double c, long double *bb,
                                       long double *ac4);
 
+int is_discriminant_near_zero(long double discriminant, Accuracy epsilon,
+                              long double bb);
+
 #endif  // Helpers_QuadraticEquation_H
