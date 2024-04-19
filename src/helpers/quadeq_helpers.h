@@ -1,12 +1,12 @@
-#ifndef Helpers_QuadraticEquation_H
-#define Helpers_QuadraticEquation_H
+// Copyright 2024 <Denis Malchenko (scimgeo)>
+// "https://github.com/denismalchenko"
+#ifndef SRC_HELPERS_QUADEQ_HELPERS_H_
+#define SRC_HELPERS_QUADEQ_HELPERS_H_
 
 #include <math.h>
 
-#define NUMBER_PRECISION 0
-#define TYPE_PRECISION 1
 #define ABSOLUTE_VALUE(x) (x < 0 ? -x : x)
-#define COUNT_DISCRIMINANT(bb, ac4) (bb - ac4)
+#define MINIMUM(x, y) (x < y ? x : y)
 #define DISCRIMINANT_EPSILON(ten_power) (powl(10, -2 * ten_power))
 #define SQRT_DISCRIMINANT_EPSILON(ten_power) (powl(10, -ten_power))
 
@@ -15,17 +15,16 @@ typedef enum {
   USUAL = 0,
   ZERO_ABC = 1,
   ZERO_AB = 2,
-  ZERO_A = 3,
-  ZERO_B = 4,
-  ZERO_C = 5,
-  SMALL_BB_AND_AC4 = 6,
-  BIG_BB_AND_AC4 = 7,
-  BIG_BB = 8,
-  BIG_AC4 = 9
+  ZERO_BC = 3,
+  ZERO_A = 4,
+  ZERO_B = 5,
+  ZERO_C = 6
 } EquationCases;
 
+typedef enum { NUMBER_PRECISION = 0, TYPE_PRECISION = 1 } PrecisionType;
+
 typedef struct {
-  int type;
+  PrecisionType type;
   union {
     int ten_power;
     char precision;
@@ -35,10 +34,13 @@ typedef struct {
 int check_accuracy(const char *accuracy, Accuracy *epsilon);
 
 EquationCases ascertain_equation_case(long double a, long double b,
-                                      long double c, long double *bb,
-                                      long double *ac4);
+                                      long double c);
 
-int is_discriminant_near_zero(long double discriminant, Accuracy epsilon,
-                              long double bb);
+long double count_sqrt_discriminant(long double a, long double b, long double c,
+                                    Accuracy epsilon);
 
-#endif  // Helpers_QuadraticEquation_H
+long double sqrt_number_with_type_precision(long double number,
+                                            long double benchmark,
+                                            char type_precision);
+
+#endif  // SRC_HELPERS_QUADEQ_HELPERS_H_

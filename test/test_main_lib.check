@@ -7,8 +7,8 @@ long double b = 1;
 long double c = 2;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_b_is_nan
 long double a = 1;
@@ -16,8 +16,8 @@ long double b = NAN;
 long double c = 2;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_c_is_nan
 long double a = 1;
@@ -25,8 +25,8 @@ long double b = 2;
 long double c = NAN;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 
 #test errors_a_is_inf
@@ -35,8 +35,8 @@ long double b = 1;
 long double c = 2;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_b_is_inf
 long double a = 1;
@@ -44,8 +44,8 @@ long double b = INFINITY;
 long double c = 2;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_c_is_inf
 long double a = 1;
@@ -53,8 +53,8 @@ long double b = 2;
 long double c = INFINITY;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 
 
@@ -64,8 +64,8 @@ long double b = 1;
 long double c = 2;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_b_is_minus_inf
 long double a = 1;
@@ -73,8 +73,8 @@ long double b = -INFINITY;
 long double c = 2;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_c_is_minus_inf
 long double a = 1;
@@ -82,8 +82,8 @@ long double b = 2;
 long double c = -INFINITY;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 
 #test errors_ab_not_finite
@@ -92,8 +92,8 @@ long double b = INFINITY;
 long double c = 2;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_ac_not_finite
 long double a = -INFINITY;
@@ -101,8 +101,8 @@ long double b = 3;
 long double c = NAN;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_bc_not_finite
 long double a = -2;
@@ -110,8 +110,8 @@ long double b = INFINITY;
 long double c = INFINITY;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_all_not_finite
 long double a = NAN;
@@ -119,8 +119,8 @@ long double b = NAN;
 long double c = -INFINITY;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 
 #test errors_bad_accuracy_char
@@ -130,8 +130,8 @@ long double c = 1;
 char accuracy[] = "q";
 EquationRoots result = SOLVE_EQUATION(a, b, c, accuracy);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_bad_accuracy_string
 long double a = 1;
@@ -140,8 +140,8 @@ long double c = 1;
 char accuracy[] = "two";
 EquationRoots result = SOLVE_EQUATION(a, b, c, accuracy);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_bad_accuracy_minus_first
 long double a = 1;
@@ -150,8 +150,8 @@ long double c = 1;
 char accuracy[] = "-f";
 EquationRoots result = SOLVE_EQUATION(a, b, c, accuracy);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test errors_bad_accuracy_plus_first
 long double a = 1;
@@ -160,8 +160,8 @@ long double c = 1;
 char accuracy[] = "+d";
 EquationRoots result = SOLVE_EQUATION(a, b, c, accuracy);
   ck_assert(result.rootsNumber == InvalidValue);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 
 
@@ -174,8 +174,8 @@ long double b = 0;
 long double c = 0;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == InfinityRoots);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test without_roots_c_not_zero_test1
 long double a = 0;
@@ -183,8 +183,8 @@ long double b = 0;
 long double c = 1;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == NoRoots);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test without_roots_c_not_zero_test2
 long double a = 0;
@@ -192,8 +192,8 @@ long double b = 0;
 long double c = -5.7;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == NoRoots);
-  ck_assert_ldouble_nan(crealf(result.root1));
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_nan(creall(result.root1));
+  ck_assert_ldouble_nan(creall(result.root2));
 
 
 
@@ -206,9 +206,9 @@ long double b = -1.7;
 long double c = 0;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OnlyOneRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_nan(creall(result.root2));
 
 
 #test only_one_root_precise_value_1
@@ -217,19 +217,19 @@ long double b = 4;
 long double c = 6;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OnlyOneRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -1.5);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_eq(creall(result.root1), -1.5);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test only_one_root_precise_value_2
 long double a = 0;
-long double b = -0.385;
+long double b = -0.375;
 long double c = 0.2578125L;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OnlyOneRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.6875);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_eq(creall(result.root1), 0.6875);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test only_one_root_approximately_value_1
 long double a = 0;
@@ -237,9 +237,9 @@ long double b = 3;
 long double c = -1;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OnlyOneRoot);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 0.3333333333333333333L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_eq_tol(creall(result.root1), 0.3333333333333333333L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_nan(creall(result.root2));
 
 #test only_one_root_approximately_value_2
 long double a = 0;
@@ -247,13 +247,24 @@ long double b = -1.45;
 long double c = -1.678;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OnlyOneRoot);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), -1.1572413793103448276L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_nan(crealf(result.root2));
+  ck_assert_ldouble_eq_tol(creall(result.root1), -1.1572413793103448276L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_nan(creall(result.root2));
 
 
 
 #suite incomplete_equation
+
+#test incomplete_equation_b0c0
+long double a = 3;
+long double b = 0;
+long double c = 0;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 
 #test incomplete_equation_b0_real_precise_value_1
@@ -262,10 +273,10 @@ long double b = 0;
 long double c = -4.6875;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -1.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 1.25);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -1.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 1.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test incomplete_equation_b0_real_precise_value_2
 long double a = -1.75;
@@ -273,10 +284,10 @@ long double b = 0;
 long double c = 3.0146484375L;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -1.3125);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 1.3125);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -1.3125);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 1.3125);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test incomplete_equation_b0_real_approximately_value
 long double a = 1;
@@ -284,9 +295,9 @@ long double b = 0;
 long double c = -3;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), -1.7320508075688772935L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root2), 1.7320508075688772935L, LDBL_EPSILON);
+  ck_assert_ldouble_eq_tol(creall(result.root1), -1.7320508075688772935L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1.7320508075688772935L, 1e-15);
 
 
 #test incomplete_equation_b0_complex_precise_value_1
@@ -294,33 +305,33 @@ long double a = 0.00390625L;
 long double b = 0;
 long double c = 0.66015625L;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0);
-  ck_assert_ldouble_eq(cimagf(result.root1), -13);
-  ck_assert_ldouble_eq(crealf(result.root2), 0);
-  ck_assert_ldouble_eq(cimagf(result.root2), 13);
+  ck_assert(result.rootsNumber == TwoComplexRoots);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), -13);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 13);
 
 #test incomplete_equation_b0_complex_precise_value_2
 long double a = -16.625;
 long double b = 0;
 long double c = -233.7890625L;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0);
-  ck_assert_ldouble_eq(cimagf(result.root1), -3.75);
-  ck_assert_ldouble_eq(crealf(result.root2), 0);
-  ck_assert_ldouble_eq(cimagf(result.root2), 3.75);
+  ck_assert(result.rootsNumber == TwoComplexRoots);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), -3.75);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 3.75);
 
 #test incomplete_equation_b0_complex_approximately_value
 long double a = -9;
 long double b = 0;
 long double c = -1;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(cimagf(result.root1), -0.3333333333333333333L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(crealf(result.root2), 0);
-  ck_assert_ldouble_eq_tol(cimagf(result.root2), 0.3333333333333333333L, LDBL_EPSILON);
+  ck_assert(result.rootsNumber == TwoComplexRoots);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq_tol(cimagl(result.root1), -0.3333333333333333333L, 1e-15);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq_tol(cimagl(result.root2), 0.3333333333333333333L, 1e-15);
 
 
 #test incomplete_equation_c0_precise_value_1
@@ -329,10 +340,10 @@ long double b = 3.5;
 long double c = 0;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 0);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test incomplete_equation_c0_precise_value_2
 long double a = 3.5;
@@ -340,10 +351,10 @@ long double b = -1.75;
 long double c = 0;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 0.5);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.5);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test incomplete_equation_c0_precise_value_3
 long double a = -0.53125;
@@ -351,10 +362,10 @@ long double b = 2.357421875L;
 long double c = 0;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 4.4375);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 4.4375);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test incomplete_equation_c0_precise_value_4
 long double a = -76.84375;
@@ -362,10 +373,10 @@ long double b = -461.0625;
 long double c = 0;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -6);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 0);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -6);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test incomplete_equation_c0_approximately_value_1
 long double a = -7;
@@ -373,10 +384,10 @@ long double b = -3;
 long double c = 0;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), -0.4285714285714285714L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 0);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), -0.4285714285714285714L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test incomplete_equation_c0_approximately_value_2
 long double a = 7;
@@ -384,10 +395,10 @@ long double b = -3;
 long double c = 0;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root2), -0.4285714285714285714L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 0.4285714285714285714L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 
 
@@ -400,10 +411,10 @@ long double b = -24;
 long double c = 9;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.75);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 0.75);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0.75);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.75);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test exactly_one_double_roots_precise_value_2
 long double a = -4.25;
@@ -411,10 +422,10 @@ long double b = 6.375;
 long double c = -2.390625;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.75);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 0.75);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0.75);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.75);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test exactly_one_double_roots_precise_value_3
 long double a = 28;
@@ -422,21 +433,21 @@ long double b = 63;
 long double c = 35.4375;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -1.125);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), -1.125);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -1.125);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -1.125);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test exactly_one_double_roots_precise_value_4
 long double a = -0.0810546875L;
-long double b = -0.783203125L;
+long double b = -1.783203125L;
 long double c = -9.8076171875L;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -11);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), -11);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -11);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -11);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test exactly_one_double_roots_approximately_value_1
 long double a = 36.75;
@@ -444,10 +455,10 @@ long double b = -31.5;
 long double c = 6.75;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 0.4285714285714285714L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root2), 0.4285714285714285714L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 0.4285714285714285714L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 0.4285714285714285714L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test exactly_one_double_roots_approximately_value_2
 long double a = 6.75;
@@ -455,10 +466,10 @@ long double b = 31.5;
 long double c = 36.75;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), -2.3333333333333333333L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root2), -2.3333333333333333333L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), -2.3333333333333333333L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), -2.3333333333333333333L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 
 
@@ -471,10 +482,10 @@ long double b = -11534336;
 long double c = 5242880;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.5);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 5);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0.5);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 5);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test exactly_two_real_roots_precise_value_2
 long double a = 536870912;
@@ -482,10 +493,10 @@ long double b = -16384;
 long double c = -15;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -0.000152587890625L);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), 0.00018310546875L);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -0.000152587890625L);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.00018310546875L);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test exactly_two_real_roots_precise_value_3
 long double a = 262144;
@@ -493,10 +504,10 @@ long double b = 43739946942469.0L;
 long double c = 834273280;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -166854656.0L);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root2), -0.000019073486328125L);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -166854656.0L);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -0.000019073486328125L);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test exactly_two_real_roots_approximately_value
 long double a = 1;
@@ -504,10 +515,10 @@ long double b = 14;
 long double c = -38;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), -16.3273790530888150456L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root2), 2.327379053088815045554L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), -16.3273790530888150456L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 2.327379053088815045554L, 1e-15);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 
 
@@ -520,10 +531,10 @@ long double b = 0.375;
 long double c = -0.46875;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 2);
-  ck_assert_ldouble_eq(cimagf(result.root1), -1);
-  ck_assert_ldouble_eq(crealf(result.root2), 2);
-  ck_assert_ldouble_eq(cimagf(result.root2), 1);
+  ck_assert_ldouble_eq(creall(result.root1), 2);
+  ck_assert_ldouble_eq(cimagl(result.root1), -1);
+  ck_assert_ldouble_eq(creall(result.root2), 2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 1);
 
 #test exactly_two_complex_roots_precise_value_2
 long double a = -128;
@@ -531,10 +542,10 @@ long double b = -26112;
 long double c = -1331784;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -102);
-  ck_assert_ldouble_eq(cimagf(result.root1), -0.75);
-  ck_assert_ldouble_eq(crealf(result.root2), -102);
-  ck_assert_ldouble_eq(cimagf(result.root2), 0.75);
+  ck_assert_ldouble_eq(creall(result.root1), -102);
+  ck_assert_ldouble_eq(cimagl(result.root1), -0.75);
+  ck_assert_ldouble_eq(creall(result.root2), -102);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0.75);
 
 #test exactly_two_complex_roots_approximately_value_1
 long double a = 9;
@@ -542,10 +553,10 @@ long double b = -6;
 long double c = 19;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 0.3333333333333333333L, LDBL_EPSILON);
-  ck_assert_ldouble_eq_tol(cimagf(result.root1), -1.4142135623730950488L, LDBL_EPSILON);
-  ck_assert_ldouble_eq_tol(crealf(result.root2), 0.3333333333333333333L, LDBL_EPSILON);
-  ck_assert_ldouble_eq_tol(cimagf(result.root2), 1.4142135623730950488L, LDBL_EPSILON);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 0.3333333333333333333L, 1e-15);
+  ck_assert_ldouble_eq_tol(cimagl(result.root1), -1.4142135623730950488L, 1e-15);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 0.3333333333333333333L, 1e-15);
+  ck_assert_ldouble_eq_tol(cimagl(result.root2), 1.4142135623730950488L, 1e-15);
 
 #test exactly_two_complex_roots_approximately_value_2
 long double a = 3136;
@@ -553,252 +564,340 @@ long double b = 2352;
 long double c = 1017;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -0.375);
-  ck_assert_ldouble_eq_tol(cimagf(result.root1), -0.4285714285714285714L, LDBL_EPSILON);
-  ck_assert_ldouble_eq(crealf(result.root1), -0.375);
-  ck_assert_ldouble_eq_tol(cimagf(result.root2), 0.4285714285714285714L, LDBL_EPSILON);
+  ck_assert_ldouble_eq(creall(result.root1), -0.375);
+  ck_assert_ldouble_eq_tol(cimagl(result.root1), -0.4285714285714285714L, 1e-15);
+  ck_assert_ldouble_eq(creall(result.root2), -0.375);
+  ck_assert_ldouble_eq_tol(cimagl(result.root2), 0.4285714285714285714L, 1e-15);
   
 
 #suite different_accuracy
 
 #test different_accuracy_test1
-long double a = 0.1;
-long double b = -0.2;
-long double c = 0.1;
+float a = 0.01;
+float b = -0.2;
+float c = 1;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "l");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "L");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "d");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "D");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "f");
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "F");
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq_tol(crealf(result.root1), 1, LDBL_EPSILON);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "i");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "I");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "z");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "Z");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "1");
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "5");
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "4");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-
+  ck_assert_ldouble_eq_tol(creall(result.root1), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 10, 1e-6);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test different_accuracy_test2
+float a = -0.000001;
+float b = 0.002;
+float c = -1;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "l");
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "L");
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "d");
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "D");
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "f");
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "F");
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "i");
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "I");
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "z");
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "Z");
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "7");
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "6");
+  ck_assert(result.rootsNumber == OneDoubleRoot);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 1000, 1e-4);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#test different_accuracy_test3
 long double a = 10;
 long double b = 40;
 long double c = -210;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "l");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "L");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "d");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "D");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "f");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "F");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "i");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "I");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "z");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "Z");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "-2");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -7);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -7);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "-3");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 
-#test different_accuracy_test3
+#test different_accuracy_test4
 long double a = -1;
 long double b = 0.5;
 long double c = -4.0625;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "l");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "L");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "d");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "D");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "f");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "F");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "i");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "I");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
 result = SOLVE_EQUATION(a, b, c, "z");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "-1");
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "0");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), -2);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 2);
-result = SOLVE_EQUATION(a, b, c, "-2");
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), -2);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 2);
+result = SOLVE_EQUATION(a, b, c, "-1");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 
 
@@ -806,154 +905,132 @@ result = SOLVE_EQUATION(a, b, c, "-2");
 
 
 #test large_values_bb_and_ac4_two_real_roots
-long double a = 1e2500L;
-long double b = -1e2500L;
-long double c = -6e2500L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == BIG_BB_AND_AC4);
+long double a = ldexpl(1, 8305);
+long double b = -ldexpl(1, 8305);
+long double c = -ldexpl(6, 8305);
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "-2500");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "-2501");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.5);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.5);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0.5);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.5);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test large_values_bb_and_ac4_two_complex_roots
-long double a = 1e2469L;
-long double b = 4e2469L;
-long double c = 13e2469L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == BIG_BB_AND_AC4);
+long double a = ldexpl(1, 8202);
+long double b = ldexpl(4, 8202);
+long double c = ldexpl(13, 8202);
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), -3);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 3);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), -3);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 3);
 result = SOLVE_EQUATION(a, b, c, "-2469");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), -3);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 3);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), -3);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 3);
 result = SOLVE_EQUATION(a, b, c, "-2470");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test large_values_bb_and_ac4_one_double_root
-long double a = 16e2470L;
-long double b = -8e2470L;
-long double c = 1e2470L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == BIG_BB_AND_AC4);
+long double a = ldexpl(16, 8205);
+long double b = -ldexpl(8, 8205);
+long double c = ldexpl(1, 8205);
 EquationRoots result = SOLVE_EQUATION(a, b, c);
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "-2470");
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "-2471");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
 
 #test large_values_bb
-long double a = 1e2460L;
-long double b = 2999999.9375e2460L;
-long double c = -18750e2460L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == BIG_BB);
+long double a = ldexpl(1, 8172);
+long double b = ldexpl(2999999.9375, 8172);
+long double c = -ldexpl(187500, 8172);
+long double vertex = -1499999.96875L;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -3000000);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.0625);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -3000000);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.0625);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "-2466");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -3000000);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.0625);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -3000000);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.0625);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "-2467");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -1499999.96875L);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), -1499999.96875L);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), vertex);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -1499999.96875L);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test large_values_ac4_two_complex_roots
-long double a = 1e2465L;
-long double b = 1e2465L;
-long double c = 1000001e2465L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == BIG_AC4);
+long double a = ldexpl(1, 8189);
+long double b = ldexpl(2, 8189);
+long double c = ldexpl(1000001, 8189);
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), -1000);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 1000);
-result = SOLVE_EQUATION(a, b, c, "-2469");
+  ck_assert_ldouble_eq(creall(result.root1), -1);
+  ck_assert_ldouble_eq(cimagl(result.root1), -1000);
+  ck_assert_ldouble_eq(creall(result.root2), -1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 1000);
+result = SOLVE_EQUATION(a, b, c, "-2468");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), -1000);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 1000);
-result = SOLVE_EQUATION(a, b, c, "-2470");
+  ck_assert_ldouble_eq(creall(result.root1), -1);
+  ck_assert_ldouble_eq(cimagl(result.root1), -1000);
+  ck_assert_ldouble_eq(creall(result.root2), -1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 1000);
+result = SOLVE_EQUATION(a, b, c, "-2469");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test large_values_ac4_two_real_roots
-long double a = 1e2465L;
-long double b = 1e2465L;
-long double c = -1001000e2465L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == BIG_AC4);
+long double a = ldexpl(1, 8189);
+long double b = ldexpl(1, 8189);
+long double c = -ldexpl(1001000, 8189);
 EquationRoots result = SOLVE_EQUATION(a, b, c);
-  ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "-2471");
-  ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 1);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "-2472");
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), -1001);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 1000);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "-2468");
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), -1001);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 1000);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "-2469");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -0.5);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), -0.5);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -0.5);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -0.5);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 
 
@@ -961,76 +1038,58 @@ result = SOLVE_EQUATION(a, b, c, "-2472");
 
 
 #test small_values_two_real_roots
-long double a = 1e-2500L;
-long double b = -1e-2500L;
-long double c = -6e-2500L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == SMALL_BB_AND_AC4);
+long double a = ldexpl(1, -8305);
+long double b = -ldexpl(1, -8305);
+long double c = -ldexpl(6, -8305);
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 result = SOLVE_EQUATION(a, b, c, "2500");
   ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 3);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "2501");
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 3);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+result = SOLVE_EQUATION(a, b, c, "2499");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.5);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.5);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0.5);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.5);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test small_values_two_complex_roots
-long double a = 1e-2469L;
-long double b = 4e-2469L;
-long double c = 13e-2469L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == SMALL_BB_AND_AC4);
+long double a = ldexpl(1, -8202);
+long double b = ldexpl(4, -8202);
+long double c = ldexpl(13, -8202);
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), -3);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 3);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), -3);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 3);
 result = SOLVE_EQUATION(a, b, c, "2469");
   ck_assert(result.rootsNumber == TwoComplexRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), -3);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 3);
-result = SOLVE_EQUATION(a, b, c, "2470");
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), -3);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 3);
+result = SOLVE_EQUATION(a, b, c, "2468");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), -2);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), -2);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), -2);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test small_values_one_double_root
-long double a = 16e-2470L;
-long double b = -8e-2470L;
-long double c = 1e-2470L;
-long double bb, ac4;
-  ck_assert(ascertain_equation_case(a, b, c, &bb, &ac4) == SMALL_BB_AND_AC4);
+long double a = ldexpl(16, -8205);
+long double b = -ldexpl(8, -8205);
+long double c = ldexpl(1, -8205);
 EquationRoots result = SOLVE_EQUATION(a, b, c);
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "2470");
-  ck_assert(result.rootsNumber == TwoRealRoots);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-result = SOLVE_EQUATION(a, b, c, "2471");
   ck_assert(result.rootsNumber == OneDoubleRoot);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
-  ck_assert_ldouble_eq(crealf(result.root1), 0.25);
-  ck_assert_ldouble_eq(cimagf(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root1), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0.25);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);

@@ -1,5 +1,7 @@
-#ifndef QuadraticEquation_H
-#define QuadraticEquation_H
+// Copyright 2024 <Denis Malchenko (scimgeo)>
+// "https://github.com/denismalchenko"
+#ifndef SRC_QUADRATIC_EQUATION_H_
+#define SRC_QUADRATIC_EQUATION_H_
 
 #include <complex.h>
 
@@ -28,4 +30,4 @@ EquationRoots solve_equation_accur(long double a, long double b, long double c,
   GET_FUNCTION(__VA_ARGS__, solve_equation_accur, solve_equation, 0, 0) \
   (__VA_ARGS__)
 
-#endif  // QuadraticEquation_H
+#endif  // SRC_QUADRATIC_EQUATION_H_

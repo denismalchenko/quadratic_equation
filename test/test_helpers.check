@@ -459,104 +459,91 @@ int res = check_accuracy(accuracy, &epsilon);
 long double a = NAN;
 long double b = 1;
 long double c = 2;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_b_is_nan
 long double a = 1;
 long double b = NAN;
 long double c = 2;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_c_is_nan
 long double a = 1;
 long double b = 2;
 long double c = NAN;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_a_is_inf
 long double a = INFINITY;
 long double b = 1;
 long double c = 2;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_b_is_inf
 long double a = 1;
 long double b = INFINITY;
 long double c = 2;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_c_is_inf
 long double a = 1;
 long double b = 2;
 long double c = INFINITY;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_a_is_minus_inf
 long double a = -INFINITY;
 long double b = 1;
 long double c = 2;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_b_is_minus_inf
 long double a = 1;
 long double b = -INFINITY;
 long double c = 2;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_c_is_minus_inf
 long double a = 1;
 long double b = 2;
 long double c = -INFINITY;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_ab_not_finite
 long double a = INFINITY;
 long double b = -INFINITY;
 long double c = 2;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_ac_not_finite
 long double a = NAN;
 long double b = 3;
 long double c = -INFINITY;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_bc_not_finite
 long double a = -2;
 long double b = NAN;
 long double c = NAN;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 #test ascertain_equation_case_error_all_not_finite
 long double a = -INFINITY;
 long double b = INFINITY;
 long double c = INFINITY;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ERROR_INPUT);
 
 
@@ -568,72 +555,70 @@ EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
 long double a = 0;
 long double b = 0;
 long double c = 0;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_ABC);
 
 #test ascertain_equation_case_zeros_ab_test1
 long double a = 0;
 long double b = 0;
 long double c = -5.4;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_AB);
 
 #test ascertain_equation_case_zeros_ab_test2
 long double a = 0;
 long double b = 0;
 long double c = 857;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_AB);
 
 #test ascertain_equation_case_zeros_ac
 long double a = 0;
 long double b = 8464.555;
 long double c = 0;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_A);
+
+#test ascertain_equation_case_zeros_bc
+long double a = 8745.5;
+long double b = 0;
+long double c = 0;
+EquationCases result = ascertain_equation_case(a, b, c);
+  ck_assert(result == ZERO_BC);
 
 #test ascertain_equation_case_zeros_a
 long double a = 0;
 long double b = 643;
 long double c = 23.1;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_A);
 
 #test ascertain_equation_case_zeros_b_test_1
 long double a = -8115;
 long double b = 0;
 long double c = 45453.55444;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_B);
 
 #test ascertain_equation_case_zeros_b_test_2
 long double a = 0.00075;
 long double b = 0;
 long double c = 7777;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_B);
 
 #test ascertain_equation_case_zeros_c_test_1
 long double a = -0.00001;
 long double b = -0.0004;
 long double c = 0;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_C);
 
 #test ascertain_equation_case_zeros_c_test_2
 long double a = 1.23456;
 long double b = -6666;
 long double c = 0;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == ZERO_C);
 
 
@@ -645,80 +630,276 @@ EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
 long double a = 2;
 long double b = 3;
 long double c = 4;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == USUAL);
-  ck_assert_ldouble_eq(bb, 9);
-  ck_assert_ldouble_eq(ac4, 32);
 
 #test ascertain_equation_case_usual_test2
 long double a = 57892;
 long double b = -0.0625;
 long double c = -9.125;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == USUAL);
-  ck_assert_ldouble_eq(bb, 0.00390625L);
-  ck_assert_ldouble_eq(ac4, -2113058);
 
 #test ascertain_equation_case_usual_test3
 long double a = -1e100L;
 long double b = 1e-100L;
 long double c = 4e200L;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == USUAL);
-  ck_assert_ldouble_eq_tol(bb, 1e-200L, 1e-212L);
-  ck_assert_ldouble_eq_tol(ac4, -1.6e301L, 1e289L);
 
 #test ascertain_equation_case_usual_test4
 long double a = -5e-2000L;
 long double b = -7e415L;
 long double c = -4e200L;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
+EquationCases result = ascertain_equation_case(a, b, c);
   ck_assert(result == USUAL);
-  ck_assert_ldouble_eq_tol(bb, 4.9e831L, 1e819L);
-  ck_assert_ldouble_eq_tol(ac4, 8e-1799L, 1e-1787L);
 
 
 
-#suite ascertain_equation_case_small_discriminant
+#suite sqrt_number_with_type_precision
 
 
-#test ascertain_equation_case_small_discriminant
-long double a = 1e-2000L;
-long double b = 1e-2467L;
-long double c = 1e-2933L;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
-  ck_assert(result == SMALL_BB_AND_AC4);
+#test sqrt_number_with_type_precision_absolute_zero
+long double number = 0;
+long double benchmark = 0.05;
+char type_precision = 'f';
+long double result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = 'd';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = 'l';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = 's';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+
+#test sqrt_number_with_type_precision_not_zero_test1
+long double number = 4;
+long double benchmark = 1;
+char type_precision = 'f';
+long double result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 2);
+type_precision = 'd';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 2);
+type_precision = 'l';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 2);
+type_precision = 'q';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 2);
+
+#test sqrt_number_with_type_precision_not_zero_test2
+long double number = -0.25;
+long double benchmark = 1;
+char type_precision = 'f';
+long double result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, -0.5);
+type_precision = 'd';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, -0.5);
+type_precision = 'l';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, -0.5);
+type_precision = 'w';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, -0.5);
+
+#test sqrt_number_with_type_precision_zero_in_float
+long double number = ldexpl(2.25,-48);
+long double benchmark = ldexpl(1,-21);
+long double sqrt_number = ldexpl(1.5,-24);
+char type_precision = 'f';
+long double result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = 'd';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, sqrt_number);
+type_precision = 'l';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, sqrt_number);
+type_precision = 't';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, sqrt_number);
+
+#test sqrt_number_with_type_precision_zero_in_double
+long double number = -ldexpl(3.0625,-76);
+long double benchmark = ldexpl(1,-22);
+long double sqrt_number = -ldexpl(1.75,-38);
+char type_precision = 'f';
+long double result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = 'd';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = 'l';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, sqrt_number);
+type_precision = '9';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, sqrt_number);
+
+#test sqrt_number_with_type_precision_zero_in_long_double
+long double number = -ldexpl(0.390625,-72);
+long double benchmark = ldexpl(1,-7);
+long double sqrt_number = -ldexpl(0.625,-36);
+char type_precision = 'f';
+long double result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = 'd';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = 'l';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, 0);
+type_precision = '\n';
+result = sqrt_number_with_type_precision(number, benchmark, type_precision);
+  ck_assert_ldouble_eq(result, sqrt_number);
 
 
 
-#suite ascertain_equation_case_big_discriminant
+#suite count_sqrt_discriminant
+
+#test count_sqrt_discriminant_usual_zero
+long double a = 0.25;
+long double b = -1;
+long double c = 1;
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
 
 
-#test ascertain_equation_case_big_discriminant_bb_and_ac4
-long double a = 1e2000L;
-long double b = 1e2467L;
-long double c = 1e2932L;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
-  ck_assert(result == BIG_BB_AND_AC4);
+#test count_sqrt_discriminant_usual_not_zero_test1
+long double a = 10000;
+long double b = 30000;
+long double c = 20000;
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 10000);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 10000);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 10000);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -4};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 10000);
+epsilon.value.ten_power = -5;    
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
 
-#test ascertain_equation_case_big_discriminant_bb
-long double a = 1e200L;
-long double b = -1e2467L;
-long double c = 1e293L;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
-  ck_assert(result == BIG_BB);
 
-#test ascertain_equation_case_big_discriminant_ac4
-long double a = -1e2000L;
-long double b = 1e246L;
-long double c = 1e2932L;
-long double bb, ac4;
-EquationCases result = ascertain_equation_case(a, b, c, &bb, &ac4);
-  ck_assert(result == BIG_AC4);
+#test count_sqrt_discriminant_usual_not_zero_test2
+long double a = -0.0625;
+long double b = -0.125;
+long double c = 1.625;
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, -0.625);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, -0.625);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, -0.625);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 1};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 10000);
+epsilon.value.ten_power = 0;    
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+
+#test count_sqrt_discriminant_big_bb_and_ac4_bb_more_bigger
+long double a = ldexpl(1, 8305);
+long double b = -ldexpl(3, 8340);
+long double c = -ldexpl(1, 8305);
+long double sqrt_discriminant = -b;
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+
+#test count_sqrt_discriminant_big_bb_and_ac4_ac4_more_bigger_minus
+long double a = ldexpl(1, 8337);
+long double b = -ldexpl(3, 8305);
+long double c = -ldexpl(1, 8337);
+long double sqrt_discriminant = ldexpl(1, 8338);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+
+
+#test count_sqrt_discriminant_big_bb_and_ac4_ac4_more_bigger_plus
+long double a = ldexpl(9, 8337);
+long double b = -ldexpl(7, 8305);
+long double c = ldexpl(1, 8337);
+long double sqrt_discriminant = -ldexpl(3, 8338);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+
+// todo (big more change to one not big) d=0, d>0, d<0  && small 
+#test count_sqrt_discriminant_big_bb_and_ac4_same_values
+long double a = ldexpl(9, 8337);
+long double b = -ldexpl(7, 8305);
+long double c = ldexpl(1, 8337);
+long double sqrt_discriminant = -ldexpl(3, 8338);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
