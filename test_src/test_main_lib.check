@@ -1118,7 +1118,7 @@ EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert_ldouble_eq(creall(result.root2), 1);
   ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
-#test huge_values_bb_plus
+#test huge_values_b_plus
 long double a = 1;
 long double b = LDBL_MAX;
 long double c = 1;
@@ -1129,7 +1129,7 @@ EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert_ldouble_eq(creall(result.root2), 0);
   ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
-#test huge_values_bb_minus
+#test huge_values_b_minus
 long double a = 1;
 long double b = -LDBL_MAX;
 long double c = 1;
@@ -1140,7 +1140,7 @@ EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert_ldouble_eq(creall(result.root2), LDBL_MAX);
   ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
-#test huge_values_a_and_bb_plus
+#test huge_values_a_and_b_plus
 long double a = LDBL_MAX;
 long double b = LDBL_MAX;
 long double c = 1;
@@ -1151,7 +1151,7 @@ EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert_ldouble_eq(creall(result.root2), 0);
   ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
-#test huge_values_a_and_bb_minus
+#test huge_values_a_and_b_minus
 long double a = LDBL_MAX;
 long double b = -LDBL_MAX;
 long double c = 1;
@@ -1171,4 +1171,26 @@ EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert_ldouble_eq(creall(result.root1), -0.5);
   ck_assert_ldouble_eq(cimagl(result.root1), 0);
   ck_assert_ldouble_eq(creall(result.root2), 1.5);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#test huge_values_b_and_a_small_plus
+long double a = 0.5;
+long double b = LDBL_MAX;
+long double c = 1;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), -INFINITY);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#test huge_values_b_and_a_small_munus
+long double a = 0.5;
+long double b = -LDBL_MAX;
+long double c = 1;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), INFINITY);
   ck_assert_ldouble_eq(cimagl(result.root2), 0);
