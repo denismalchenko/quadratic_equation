@@ -20,12 +20,15 @@ HELPERS_DIR = $(SOURCES_DIR)/helpers
 OBJ_DIR = $(BUILD_DIR)/obj
 GCOV_DIR = $(BUILD_DIR)/gcov
 REPORTS_DIR = $(BUILD_DIR)/reports
+DOXY_DIR = documentation
 # src files
 TEST_FILES = $(TEST_DIR)/include.file $(TEST_DIR)/*.check
 C_FILES = $(SOURCES_DIR)/*.c $(HELPERS_DIR)/*.c
 H_FILES = $(SOURCES_DIR)/*.h $(HELPERS_DIR)/*.h
 MAIN_C_FILE = $(SOURCES_DIR)/quadratic_equation.c
 HELP_C_FILE = $(HELPERS_DIR)/quadeq_helpers.c
+DOXY = $(DOXY_DIR)/doxygen.conf
+DOXY_HTML_DIR = $(DOXY_DIR)/html
 # build files
 TEST_C_FILE = $(BUILD_DIR)/test.c
 MAIN_O_FILE = $(OBJ_DIR)/$(patsubst %.c,%.o,$(notdir $(MAIN_C_FILE)))
@@ -36,7 +39,9 @@ GCOV_INFO = $(GCOV_DIR)/gcov.info
 LIB_FILE = lib$(PROJECT_NAME).a
 TEST_TARGET = $(BUILD_DIR)/test.out
 GCOV_TARGET = $(GCOV_DIR)/gcov_test.out
-HTML_TARGET = $(REPORTS_DIR)/index.html
+REPORT_TARGET = $(REPORTS_DIR)/index.html
+DOXY_TARGET = $(DOXY_HTML_DIR)/index.html
+
 
 all: clean gcov_report
 
@@ -46,7 +51,7 @@ gcov_report: $(TEST_TARGET)
 	$(GCOV_TARGET)
 	@-lcov -t "tests" -o $(GCOV_INFO) -c -d .
 	@-genhtml -o $(REPORTS_DIR) $(GCOV_INFO)
-	@echo "You can open report in $(HTML_TARGET)"
+	@echo "You can open report in $(REPORT_TARGET)"
 
 check: $(TEST_TARGET)
 	$(TEST_TARGET)
@@ -55,12 +60,15 @@ $(TEST_TARGET): $(LIB_FILE)
 	@checkmk clean_mode=1 $(TEST_FILES) > $(TEST_C_FILE)
 	@$(CC) -c $(TEST_C_FILE) -o $(TEST_O_FILE)
 	@$(CC) $(GCOV_FLAGS) $(TEST_O_FILE) $(LIB_FILE) $(TEST_FLAGS) -o $(TEST_TARGET) $(LIBS_CHECK)
-	$(RM) $(TEST_C_FILE)
+	@$(RM) $(TEST_C_FILE)
 
 $(LIB_FILE): o_files
 	@ar rc $@ $(MAIN_O_FILE) $(HELP_O_FILE)
 	@ranlib $@
 
+dvi:
+	@doxygen $(DOXY)
+	@echo "You can open documentation in $(DOXY_TARGET)"
 
 o_files: $(MAIN_C_FILE) $(HELP_C_FILE)
 	@$(MKDIR) $(BUILD_DIR)
@@ -69,7 +77,7 @@ o_files: $(MAIN_C_FILE) $(HELP_C_FILE)
 	@$(CC) -c $(HELP_C_FILE) -o $(HELP_O_FILE)
 
 clean:
-	rm -rf  *.a  $(BUILD_DIR)
+	rm -rf  *.a  $(BUILD_DIR) $(DOXY_HTML_DIR)
 
 clang:
 	clang-format -n -style=google $(C_FILES) $(H_FILES)
