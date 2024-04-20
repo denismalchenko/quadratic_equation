@@ -88,17 +88,17 @@ long double count_sqrt_discriminant(long double a, long double b, long double c,
       result = (ABSOLUTE_VALUE(discriminant) <
                 DISCRIMINANT_EPSILON(epsilon.value.ten_power))
                    ? 0
-               : (discriminant > 0) ? sqrt(discriminant)
-                                    : -sqrt(-discriminant);
+               : (discriminant > 0) ? sqrtl(discriminant)
+                                    : -sqrtl(-discriminant);
     }
   } else {
     int exp_ac4 = ilogbl(a) + ilogbl(c) + 2, exp_bb = 2 * ilogbl(b);
     if (exp_bb - exp_ac4 > LDBL_MANT_DIG) {
       result = ABSOLUTE_VALUE(b);
     } else if (exp_ac4 - exp_bb > LDBL_MANT_DIG) {
-      result = (ac4 > 0)
-                   ? -2 * sqrt(ABSOLUTE_VALUE(a)) * sqrt(ABSOLUTE_VALUE(c))
-                   : 2 * sqrt(ABSOLUTE_VALUE(a)) * sqrt(ABSOLUTE_VALUE(c));
+      result = (SAME_SIGN(a, c))
+                   ? -2 * sqrtl(ABSOLUTE_VALUE(a)) * sqrtl(ABSOLUTE_VALUE(c))
+                   : 2 * sqrtl(ABSOLUTE_VALUE(a)) * sqrtl(ABSOLUTE_VALUE(c));
     } else {
       int exp_shift = MINIMUM(exp_ac4, exp_bb) / 2;
       a = ldexpl(a, -exp_shift);
@@ -132,21 +132,21 @@ long double sqrt_number_with_type_precision(long double number,
   switch (type_precision) {
     case 'f':
       result = (ABSOLUTE_VALUE(precision) < FLT_EPSILON) ? 0
-               : (number > 0)                            ? sqrt(number)
-                                                         : -sqrt(-number);
+               : (number > 0)                            ? sqrtl(number)
+                                                         : -sqrtl(-number);
       break;
     case 'd':
       result = (ABSOLUTE_VALUE(precision) < DBL_EPSILON) ? 0
-               : (number > 0)                            ? sqrt(number)
-                                                         : -sqrt(-number);
+               : (number > 0)                            ? sqrtl(number)
+                                                         : -sqrtl(-number);
       break;
     case 'l':
       result = (ABSOLUTE_VALUE(precision) < LDBL_EPSILON) ? 0
-               : (number > 0)                             ? sqrt(number)
-                                                          : -sqrt(-number);
+               : (number > 0)                             ? sqrtl(number)
+                                                          : -sqrtl(-number);
       break;
     default:
-      result = (number > 0) ? sqrt(number) : -sqrt(-number);
+      result = (number > 0) ? sqrtl(number) : -sqrtl(-number);
   }
   return result;
 }

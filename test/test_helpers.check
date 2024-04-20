@@ -798,7 +798,7 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 #test count_sqrt_discriminant_usual_not_zero_test2
 long double a = -0.0625;
 long double b = -0.125;
-long double c = 1.625;
+long double c = -1.625;
 Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
 long double result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, -0.625);
@@ -813,15 +813,15 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
 epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 1};
 result = count_sqrt_discriminant(a, b, c, epsilon);
-  ck_assert_ldouble_eq(result, 10000);
+  ck_assert_ldouble_eq(result, -0.625);
 epsilon.value.ten_power = 0;    
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
 
 #test count_sqrt_discriminant_big_bb_and_ac4_bb_more_bigger
-long double a = ldexpl(1, 8305);
+long double a = ldexpl(1, 7340);
 long double b = -ldexpl(3, 8340);
-long double c = -ldexpl(1, 8305);
+long double c = -ldexpl(1, 7340);
 long double sqrt_discriminant = -b;
 Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
 long double result = count_sqrt_discriminant(a, b, c, epsilon);
@@ -840,10 +840,10 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
 
 #test count_sqrt_discriminant_big_bb_and_ac4_ac4_more_bigger_minus
-long double a = ldexpl(1, 8337);
-long double b = -ldexpl(3, 8305);
-long double c = -ldexpl(1, 8337);
-long double sqrt_discriminant = ldexpl(1, 8338);
+long double a = ldexpl(1, 8338);
+long double b = -ldexpl(3, 7338);
+long double c = -ldexpl(1, 8338);
+long double sqrt_discriminant = ldexpl(1, 8339);
 Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
 long double result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
@@ -862,10 +862,10 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 
 
 #test count_sqrt_discriminant_big_bb_and_ac4_ac4_more_bigger_plus
-long double a = ldexpl(9, 8337);
-long double b = -ldexpl(7, 8305);
-long double c = ldexpl(1, 8337);
-long double sqrt_discriminant = -ldexpl(3, 8338);
+long double a = ldexpl(9, 8338);
+long double b = -ldexpl(7, 8306);
+long double c = ldexpl(1, 8338);
+long double sqrt_discriminant = -ldexpl(3, 8339);
 Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
 long double result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
@@ -882,12 +882,20 @@ epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
 
-// todo (big more change to one not big) d=0, d>0, d<0  && small 
-#test count_sqrt_discriminant_big_bb_and_ac4_same_values
+
+#test count_sqrt_discriminant_big_bb_and_ac4_same_values_zero
 long double a = ldexpl(9, 8337);
-long double b = -ldexpl(7, 8305);
-long double c = ldexpl(1, 8337);
-long double sqrt_discriminant = -ldexpl(3, 8338);
+long double b = -ldexpl(6, 8335);
+long double c = ldexpl(1, 8333);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+
+#test count_sqrt_discriminant_big_bb_and_ac4_same_values_plus
+long double a = ldexpl(5, 8307);
+long double b = -ldexpl(1, 8305);
+long double c = -ldexpl(15, 8306);
+long double sqrt_discriminant = ldexpl(49, 8305);
 Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
 long double result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
@@ -900,6 +908,181 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 epsilon.value.precision = 'z';
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
-epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -2500};
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.ten_power = -2505;
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+
+#test count_sqrt_discriminant_big_bb_and_ac4_same_values_minus
+long double a = -ldexpl(13, 8305);
+long double b = ldexpl(1, 8307);
+long double c = -ldexpl(100, 8305);
+long double sqrt_discriminant = -ldexpl(72, 8305);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -2500};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon .value.ten_power = -2505;
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+
+
+#test count_sqrt_discriminant_small_bb_not_ac4
+long double a = ldexpl(5, -8189);
+long double b = -ldexpl(1, -8191);
+long double c = -ldexpl(15, -8190);
+long double sqrt_discriminant = ldexpl(49, -8191);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2465};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.ten_power = 2460;
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+
+
+#test count_sqrt_discriminant_small_bb_and_ac4_bb_more_bigger
+long double a = ldexpl(1, -9340);
+long double b = -ldexpl(3, -8340);
+long double c = -ldexpl(1, -9340);
+long double sqrt_discriminant = -b;
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 0};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+
+
+#test count_sqrt_discriminant_small_bb_and_ac4_ac4_more_bigger_minus
+long double a = ldexpl(1, -8338);
+long double b = -ldexpl(3, -9338);
+long double c = -ldexpl(1, -8338);
+long double sqrt_discriminant = ldexpl(1, -8337);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 0};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+
+
+#test count_sqrt_discriminant_small_bb_and_ac4_ac4_more_bigger_plus
+long double a = ldexpl(9, -8338);
+long double b = -ldexpl(7, -9306);
+long double c = ldexpl(1, -8338);
+long double sqrt_discriminant = -ldexpl(3, -8337);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 0};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+
+
+#test count_sqrt_discriminant_small_bb_and_ac4_same_values_zero
+long double a = ldexpl(9, -8329);
+long double b = -ldexpl(6, -8331);
+long double c = ldexpl(1, -8333);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+
+#test count_sqrt_discriminant_small_bb_and_ac4_same_values_plus
+long double a = ldexpl(5, -8303);
+long double b = -ldexpl(1, -8305);
+long double c = -ldexpl(15, -8304);
+long double sqrt_discriminant = ldexpl(49, -8305);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2500};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.ten_power = 2495;
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+
+#test count_sqrt_discriminant_small_bb_and_ac4_same_values_minus
+long double a = -ldexpl(13, -8309);
+long double b = ldexpl(1, -8307);
+long double c = -ldexpl(100, -8309);
+long double sqrt_discriminant = -ldexpl(72, -8309);
+Accuracy epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
+long double result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'd';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'f';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.precision = 'z';
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2500};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon.value.ten_power = 2495;
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);

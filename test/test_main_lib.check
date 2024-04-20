@@ -1093,3 +1093,82 @@ EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert_ldouble_eq(cimagl(result.root1), 0);
   ck_assert_ldouble_eq(creall(result.root2), 0.25);
   ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#suite huge_values
+
+#test huge_values_ac_complex
+long double a = LDBL_MAX;
+long double b = 1;
+long double c = LDBL_MAX;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoComplexRoots);
+  ck_assert_ldouble_eq_tol(creall(result.root1), 0, 1e-4000L);
+  ck_assert_ldouble_eq(cimagl(result.root1), -1);
+  ck_assert_ldouble_eq_tol(creall(result.root2), 0, 1e-4000L);
+  ck_assert_ldouble_eq(cimagl(result.root2), 1);
+
+#test huge_values_ac_real
+long double a = LDBL_MAX;
+long double b = 1;
+long double c = -LDBL_MAX;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), -1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#test huge_values_bb_plus
+long double a = 1;
+long double b = LDBL_MAX;
+long double c = 1;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), -LDBL_MAX);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#test huge_values_bb_minus
+long double a = 1;
+long double b = -LDBL_MAX;
+long double c = 1;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), LDBL_MAX);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#test huge_values_a_and_bb_plus
+long double a = LDBL_MAX;
+long double b = LDBL_MAX;
+long double c = 1;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), -1);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 0);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#test huge_values_a_and_bb_minus
+long double a = LDBL_MAX;
+long double b = -LDBL_MAX;
+long double c = 1;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), 0);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 1);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);
+
+#test huge_values_all
+long double a = LDBL_MAX;
+long double b = -LDBL_MAX;
+long double c = -LDBL_MAX * 0.75;
+EquationRoots result = SOLVE_EQUATION(a, b, c);
+  ck_assert(result.rootsNumber == TwoRealRoots);
+  ck_assert_ldouble_eq(creall(result.root1), -0.5);
+  ck_assert_ldouble_eq(cimagl(result.root1), 0);
+  ck_assert_ldouble_eq(creall(result.root2), 1.5);
+  ck_assert_ldouble_eq(cimagl(result.root2), 0);

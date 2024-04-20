@@ -22,27 +22,31 @@ EquationRoots solve_equation_accur(long double a, long double b, long double c,
     case USUAL:
       if (check_accuracy(accuracy, &epsilon)) return roots;
       sqrt_discriminant = count_sqrt_discriminant(a, b, c, epsilon);
-      if (sqrt_discriminant == 0) {
-        roots = (EquationRoots){.rootsNumber = OneDoubleRoot,
-                                .root1 = -b / (2 * a) + 0 * I,
-                                .root2 = -b / (2 * a) + 0 * I};
+      if (isfinite(sqrt_discriminant + ABSOLUTE_VALUE(b))) {
+        if (sqrt_discriminant == 0) {
+          roots = (EquationRoots){.rootsNumber = OneDoubleRoot,
+                                  .root1 = -b / (2 * a) + 0 * I,
+                                  .root2 = -b / (2 * a) + 0 * I};
+        } else {
+          int sign_a = (a > 0) ? 1 : -1;
+          roots =
+              (sqrt_discriminant > 0)
+                  ? (EquationRoots){.rootsNumber = TwoRealRoots,
+                                    .root1 = (-b - sign_a * sqrt_discriminant) /
+                                                 (2 * a) +
+                                             0 * I,
+                                    .root2 = (-b + sign_a * sqrt_discriminant) /
+                                                 (2 * a) +
+                                             0 * I}
+                  : (EquationRoots){
+                        .rootsNumber = TwoComplexRoots,
+                        .root1 = -b / (2 * a) +
+                                 sign_a * sqrt_discriminant / (2 * a) * I,
+                        .root2 = -b / (2 * a) -
+                                 sign_a * sqrt_discriminant / (2 * a) * I};
+        }
       } else {
-        int sign_a = (a > 0) ? 1 : -1;
-        roots =
-            (sqrt_discriminant > 0)
-                ? (EquationRoots){.rootsNumber = TwoRealRoots,
-                                  .root1 = (-b - sign_a * sqrt_discriminant) /
-                                               (2 * a) +
-                                           0 * I,
-                                  .root2 = (-b + sign_a * sqrt_discriminant) /
-                                               (2 * a) +
-                                           0 * I}
-                : (EquationRoots){
-                      .rootsNumber = TwoComplexRoots,
-                      .root1 = -b / (2 * a) +
-                               sign_a * sqrt_discriminant / (2 * a) * I,
-                      .root2 = -b / (2 * a) -
-                               sign_a * sqrt_discriminant / (2 * a) * I};
+        roots = solve_equation_accur(0.5, b / 2 / a, c / 2 / a, accuracy);
       }
       break;
     case ZERO_C:
@@ -57,11 +61,11 @@ EquationRoots solve_equation_accur(long double a, long double b, long double c,
     case ZERO_B:
       result = -c / a;
       roots = (result > 0) ? (EquationRoots){.rootsNumber = TwoRealRoots,
-                                             .root1 = -sqrt(result) + 0 * I,
-                                             .root2 = sqrt(result) + 0 * I}
+                                             .root1 = -sqrtl(result) + 0 * I,
+                                             .root2 = sqrtl(result) + 0 * I}
                            : (EquationRoots){.rootsNumber = TwoComplexRoots,
-                                             .root1 = 0 - sqrt(-result) * I,
-                                             .root2 = 0 + sqrt(-result) * I};
+                                             .root1 = 0 - sqrtl(-result) * I,
+                                             .root2 = 0 + sqrtl(-result) * I};
       break;
     case ZERO_A:
       roots = (EquationRoots){.rootsNumber = OnlyOneRoot,

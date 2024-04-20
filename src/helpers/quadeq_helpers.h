@@ -9,6 +9,7 @@
 #define MINIMUM(x, y) (x < y ? x : y)
 #define DISCRIMINANT_EPSILON(ten_power) (powl(10, -2 * ten_power))
 #define SQRT_DISCRIMINANT_EPSILON(ten_power) (powl(10, -ten_power))
+#define SAME_SIGN(x, y) (x < 0 ? y < 0 : y > 0)
 
 typedef enum {
   ERROR_INPUT = -1,
