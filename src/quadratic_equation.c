@@ -1,5 +1,6 @@
 // Copyright 2024 <Denis Malchenko (scimgeo)>
 // "https://github.com/denismalchenko"
+
 #include "quadratic_equation.h"
 
 #include <math.h>
@@ -23,10 +24,11 @@ EquationRoots solve_equation_accur(long double a, long double b, long double c,
       if (check_accuracy(accuracy, &epsilon)) return roots;
       sqrt_discriminant = count_sqrt_discriminant(a, b, c, epsilon);
       if (!isfinite(sqrt_discriminant + ABSOLUTE_VALUE(b)) &&
-          ABSOLUTE_VALUE(a) >= 1) {
+          ABSOLUTE_VALUE(a) > 0.5) {
         b = b / 2 / a;
         c = c / 2 / a;
         a = 0.5;
+        epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'};
         sqrt_discriminant = count_sqrt_discriminant(a, b, c, epsilon);
       }
       if (sqrt_discriminant == 0) {

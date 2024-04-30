@@ -835,9 +835,12 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 epsilon.value.precision = 'z';
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
-epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -2510};
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -2515};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
 
 #test count_sqrt_discriminant_big_bb_and_ac4_ac4_more_bigger_minus
 long double a = ldexpl(1, 8338);
@@ -856,9 +859,12 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 epsilon.value.precision = 'z';
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
-epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -2510};
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -2515};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
 
 
 #test count_sqrt_discriminant_big_bb_and_ac4_ac4_more_bigger_plus
@@ -878,9 +884,12 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 epsilon.value.precision = 'z';
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
-epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -3000};
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -2510};
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = -2515};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
 
 
 #test count_sqrt_discriminant_big_bb_and_ac4_same_values_zero
@@ -982,9 +991,12 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 epsilon.value.precision = 'z';
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
-epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 0};
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2515};
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2510};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
 
 
 #test count_sqrt_discriminant_small_bb_and_ac4_ac4_more_bigger_minus
@@ -1004,9 +1016,12 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 epsilon.value.precision = 'z';
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
-epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 0};
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2510};
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2505};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
 
 
 #test count_sqrt_discriminant_small_bb_and_ac4_ac4_more_bigger_plus
@@ -1026,9 +1041,12 @@ result = count_sqrt_discriminant(a, b, c, epsilon);
 epsilon.value.precision = 'z';
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, 0);
-epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 0};
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2510};
 result = count_sqrt_discriminant(a, b, c, epsilon);
   ck_assert_ldouble_eq(result, sqrt_discriminant);
+epsilon = (Accuracy){.type = NUMBER_PRECISION, .value.ten_power = 2505};
+result = count_sqrt_discriminant(a, b, c, epsilon);
+  ck_assert_ldouble_eq(result, 0);
 
 
 #test count_sqrt_discriminant_small_bb_and_ac4_same_values_zero

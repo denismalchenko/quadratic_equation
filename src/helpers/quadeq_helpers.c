@@ -1,12 +1,11 @@
 // Copyright 2024 <Denis Malchenko (scimgeo)>
 // "https://github.com/denismalchenko"
+
 #include "quadeq_helpers.h"
 
 #include <float.h>
 #include <math.h>
 #include <stdio.h>
-
-#define MAX_STRING_LENGTH_FOR_POWER ceil(log10(LDBL_MAX_10_EXP))
 
 int check_accuracy(const char *accuracy, Accuracy *epsilon) {
   if (accuracy == NULL || *accuracy == '\0' || *accuracy == 'l' ||
@@ -30,21 +29,21 @@ int check_accuracy(const char *accuracy, Accuracy *epsilon) {
     *epsilon = (Accuracy){.type = TYPE_PRECISION, .value.precision = 'z'};
     return 0;
   }
+
   int sign = (*accuracy == '-') ? -1 : 1;
   if (*accuracy == '-' || *accuracy == '+') {
     accuracy++;
   }
 
   if (*accuracy >= '0' && *accuracy <= '9') {
-    int ten_power = 0, remaining_lenght = MAX_STRING_LENGTH_FOR_POWER;
-    while (*accuracy >= '0' && *accuracy <= '9' && remaining_lenght > 0) {
+    int ten_power = 0;
+    while (*accuracy >= '0' && *accuracy <= '9' &&
+           ten_power < LDBL_MAX_10_EXP) {
       ten_power *= 10;
       ten_power += *accuracy - '0';
       accuracy++;
-      remaining_lenght--;
     }
-    if ((remaining_lenght == 0 && *accuracy >= '0' && *accuracy <= '9') ||
-        ten_power > LDBL_MAX_10_EXP) {
+    if (ten_power >= LDBL_MAX_10_EXP) {
       *epsilon =
           sign > 0 ? (Accuracy){.type = TYPE_PRECISION, .value.precision = 'l'}
                    : (Accuracy){.type = TYPE_PRECISION, .value.precision = 'z'};
@@ -91,14 +90,24 @@ long double count_sqrt_discriminant(long double a, long double b, long double c,
                : (discriminant > 0) ? sqrtl(discriminant)
                                     : -sqrtl(-discriminant);
     }
+
   } else {
     int exp_ac4 = ilogbl(a) + ilogbl(c) + 2, exp_bb = 2 * ilogbl(b);
+
     if (exp_bb - exp_ac4 > LDBL_MANT_DIG) {
       result = ABSOLUTE_VALUE(b);
+      if (epsilon.type == NUMBER_PRECISION &&
+          result < SQRT_DISCRIMINANT_EPSILON(epsilon.value.ten_power))
+        result = 0;
     } else if (exp_ac4 - exp_bb > LDBL_MANT_DIG) {
       result = (SAME_SIGN(a, c))
                    ? -2 * sqrtl(ABSOLUTE_VALUE(a)) * sqrtl(ABSOLUTE_VALUE(c))
                    : 2 * sqrtl(ABSOLUTE_VALUE(a)) * sqrtl(ABSOLUTE_VALUE(c));
+      if (epsilon.type == NUMBER_PRECISION &&
+          ABSOLUTE_VALUE(result) <
+              SQRT_DISCRIMINANT_EPSILON(epsilon.value.ten_power))
+        result = 0;
+
     } else {
       int exp_shift = MINIMUM(exp_ac4, exp_bb) / 2;
       a = ldexpl(a, -exp_shift);
@@ -108,6 +117,7 @@ long double count_sqrt_discriminant(long double a, long double b, long double c,
       ac4 = 4 * a * c;
       abs_ac4 = ABSOLUTE_VALUE(ac4);
       discriminant = bb - ac4;
+
       if (epsilon.type == TYPE_PRECISION) {
         result = sqrt_number_with_type_precision(
             discriminant, MINIMUM(bb, abs_ac4), epsilon.value.precision);
@@ -131,19 +141,19 @@ long double sqrt_number_with_type_precision(long double number,
   long double result = 0;
   switch (type_precision) {
     case 'f':
-      result = (ABSOLUTE_VALUE(precision) < FLT_EPSILON) ? 0
-               : (number > 0)                            ? sqrtl(number)
-                                                         : -sqrtl(-number);
+      result = (precision < FLT_EPSILON) ? 0
+               : (number > 0)            ? sqrtl(number)
+                                         : -sqrtl(-number);
       break;
     case 'd':
-      result = (ABSOLUTE_VALUE(precision) < DBL_EPSILON) ? 0
-               : (number > 0)                            ? sqrtl(number)
-                                                         : -sqrtl(-number);
+      result = (precision < DBL_EPSILON) ? 0
+               : (number > 0)            ? sqrtl(number)
+                                         : -sqrtl(-number);
       break;
     case 'l':
-      result = (ABSOLUTE_VALUE(precision) < LDBL_EPSILON) ? 0
-               : (number > 0)                             ? sqrtl(number)
-                                                          : -sqrtl(-number);
+      result = (precision < LDBL_EPSILON) ? 0
+               : (number > 0)             ? sqrtl(number)
+                                          : -sqrtl(-number);
       break;
     default:
       result = (number > 0) ? sqrtl(number) : -sqrtl(-number);

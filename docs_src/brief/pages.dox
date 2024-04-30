@@ -1,0 +1,264 @@
+
+/** @mainpage 
+
+ @section main_about_sec About the module
+ @subsection main_intro_sec Introduction
+
+  This module is designed to solve quadratic equations of the form: 
+  \f[ax^2 + bx + c = 0.\f]  
+
+  In most cases (exceptions are described in the section @ref main_without_discriminant_sec), 
+  the formula: 
+  \f[x_{1,2} =\frac{-b \pm \sqrt{D}}{2a},\f] 
+  is used to calculate the solutions, where \f$D = b^2 - 4ac\f$ - the discriminant of the quadratic equation. 
+
+  The coefficients of the quadratic equation are given by floating point numbers of extended 
+  precision (precision of the long double type). It is important to note that numbers in decimal 
+  notation cannot always be exactly represented as long double values. By the coefficients of 
+  the equation itself, it is impossible to understand whether this value is approximate or accurate. 
+  Therefore, root calculations occur with some error. 
+
+  In most cases, this error is negligible. However, when the value of the discriminant approaches zero, 
+  the impact of this error may lead to significant implications. For example, instead of a single real root, 
+  two complex roots with a non-zero imaginary component may be obtained. To mitigate such issues, library 
+  users can set the accuracy of the transmitted coefficients of a separate string variable. For more 
+  information, see the @ref accuracy page.
+
+
+  @subsection main_manual_sec Brief instructions
+
+  The recommended method of using the library is demonstrated in the following example.
+
+  @code
+    float a = 1.0, b = 0.02, c = 0.0001;
+    EquationRoots result1 = SOLVE_EQUATION(a, b, c, "2");
+    EquationRoots result2 = SOLVE_EQUATION(a, b, c);
+  @endcode
+
+  In this example, the variables a, b and c are the coefficients of a quadratic equation 
+  \f$ax^2 +bx + c = 0\f$ (in that order). These coefficients can be of any numerical type (in 
+  this example, they are of the float type) and will be automatically converted to the long double type. 
+  
+  The variables result1 and result2 are an EquationRoots structure containing information about 
+  the roots of a quadratic equation. This structure contains a rootsNumber field, which indicates 
+  the number and type of roots, as well as two long double complex fields root1 and root2, 
+  which contain the values of the first and second roots, respectively. For more information, 
+  see @ref EquationRoots. 
+  
+  The SOLVE_EQUATION macro calls the function responsible for calculating the solutions of a quadratic equation. 
+  Furthermore, n the first instance, information is passed that the maximum precision of the input coefficients 
+  is two decimal places. In the second instance, the highest default precision will be used. This example 
+  illustrates the scenario when the computed value  of the discriminant is close to zero. In the first instance, the 
+  result is one real root (more specifically, two identical roots with a zero imaginary part), whereas in the 
+  second instance, there are two distinct complex roots with a non-zero imaginary part. 
+  
+  The SOLVE_EQUATION macro provides a convenient means of organizing the call of the solve_equation and 
+  solve_equation_accur functions. If the macro receives 3 parameters, it calls the solve_equation function. 
+  If the macro receives 4 parameters, it calls the solve_equation_accur function. Therefore, the aforementioned
+  code will be transformed by the compiler into the following:
+
+  @code
+    float a = 1.0, b = 0.02, c = 0.0001;
+    EquationRoots result1 = solve_equation_accur(a, b, c, "2");
+    EquationRoots result2 = solve_equation(a, b, c);
+  @endcode
+
+  Calling the function solve_equation(a, b, c) is equivalent to calling solve_equation_accur(a, b, c, NULL).
+  For more information on using accuracy, see the @ref accuracy section.
+
+  @subsection main_without_discriminant_sec Cases of finding roots without calculating the discriminant
+
+  There are two cases where the solution to the quadratic equation \f$ax^2 +bx + c = 0\f$ can be found without 
+  calculating the discriminant.
+
+  - At least one of the coefficients a, b or c is not a finite number, i.e. it is equal to NAN, INFINITY or -INFINITY;
+  - At least one of a, b, or c equals zero.
+
+  In the first case, an INVALID_INPUT (@ref EquationResult) error will be received. In the second case, more precise methods will be used 
+  to compute the roots of the equation.
+
+  @warning In the latter case (zero coefficient), the accuracy of the coefficients of the quadratic equation (the final 
+  parameter   of the solve_equation_accur function) will be disregarded, even if its value is set to "z" or "Z".
+
+  Also see the @ref accuracy.
+
+@subsection main_files_sec Folder "helpers"
+
+This module contains a helper submodule, which is not documented in this document. It can be found in 
+the "helpers" folder. 
+@warning Please do not remove it, as it is essential for the functionality of this module.
+
+ */
+
+/** 
+  @page accuracy 
+  @section accur_about_sec Accuracy
+  @subsection accur_intro_sec Introduction
+
+  When solving a quadratic equation, it is important to consider the accuracy of the coefficients 
+  transmitted in the equation. The user can specify the accuracy in three ways: 
+  - as an integer indicating the number of decimal places (@ref accur_absolute_sec);
+  - in the form of a character, indicating the type of coefficients being transmitted (@ref accur_relative_sec);
+  - not specifying any accuracy . In this case, default value will be used (@ref accur_default_sec).
+
+  The accuracy can be set using the fourth parameter in the solve_equation_accur() function or the SOLVE_EQUATION macro, 
+  which takes a const char* argument (string type). If the solve_equation() function or SOLVE_EQUATION is called with 
+  three arguments, the default value will be used for accuracy.
+
+  The precision value is only used when it is necessary to calculate the discriminant in order to find the roots 
+  of a quadratic equation. This occurs if all the coefficients of the quadratic equation are non-zero and finite 
+  numbers (@ref main_without_discriminant_sec). In such a case, the accuracy setting is verified for correctness 
+  (@ref accur_error_sec). If the setting is not correct, an INVALID_INPUT error (@ref EquationResult) will be returned. 
+
+  @subsection accur_absolute_sec Absolute accuracy
+
+  If the accuracy string begins with a numeric value, this number will be used as the absolute accuracy value. 
+  The string may begin with a single "+" or "-" character, or may immediately follow a digit. If the string contains 
+  a decimal fraction, only the integer portion of the number will be utilized as accuracy, while will be disregarded.
+
+  The following code shows the correct ways to set absolute accuracy.
+    
+  @code
+    result = SOLVE_EQUATION(a, b, c, "2"); // absolute accuracy value is 2
+    result = solve_equation_accur(a, b, c, "+13"); // absolute accuracy value is 13
+    result = SOLVE_EQUATION(a, b, c, "0"); // absolute accuracy value is 0
+    result = solve_equation_accur(a, b, c, "-1054"); // зabsolute accuracy value is -1504
+  @endcode
+
+  If the absolute accuracy is n, it is assumed that the highest level of accuracy for the coefficients in the 
+  quadratic equation is n decimal places. If the absolute accuracy is zero, it is assumed that all coefficients 
+  in the equation are integers. If the accuracy is negative and is -n, it is assumed that each coefficient in the 
+  equation is an integer that is divided without a remainder by \f$10^n\f$, i.e., at least the last n digits of the 
+  coefficientare zeros in decimal notation.
+
+  @warning
+  - An absolute accuracy value greater than LDBL_MAX_10_EXP corresponds to setting the relative accuracy to "l". 
+  - The absolute accuracy value lower than -LDBL_MAX_10_EXP corresponds to setting the relative accuracy to "z".
+
+  The absolute precision value is used to verify the value of the discriminant. Acertain condition is tested, 
+  which is expressed as follows: \f[|D| < 10 ^ {-2 \cdot accuracy},\f] where \f$D\f$ is the discriminant, and 
+  \f$accuracy\f$ is the value of absolute accuracy. If this condition is satisfied, the discriminant is assumed 
+  to be zero and the solution to the equation is One Double Root (@ref EquationResult). If the condition is not 
+  met, the calculated discriminant value is used and the solution is Two Double Roots or TwoComplexRoots 
+  (@ref EquationResult). 
+
+  @subsection accur_relative_sec Relative accuracy
+  If the absolute accuracy of the coefficients in a quadratic equation is uncertain, it is advisable specify the 
+  relative accuracy.
+
+  For flexibility, all coefficients of a quadratic equation, a, b, and c, are automatically converted into the long 
+  double data type, and information regarding their original data type should be communicated through the use of 
+  relative accuracy.
+
+  The following table lists the correct values for the relative accuracy.
+
+  | Value         | Description                      |
+  |---------------|----------------------------------|
+  | "i" or "I"    | coefficients are integers        |
+  | "f" or "F"    | coefficients are floats          |
+  | "d" or "D"    | coefficients are doubles         |
+  | "l" or "L"    | coefficients are long doubles    |
+  | "z" or "Z"    | equate discriminant to zero      |
+
+  @warning
+  The accuracy of "z" and "Z" cannot be used to solve the equation, as it will inevitably determine the result 
+  of the OneDoubleRoot, even if that is not the case. In the code, these variables are used to define extremely 
+  low absolute accuracy values less than LDBL_MIN_10_EXP. Nevertheless, the values of "z" and "Z" may be used 
+  for testing purposes. 
+
+  The values "i" and "I" are equivalent to specifying an absolute precision of zero. That is, the following 
+  expressions are equal:
+
+  @code
+    result = SOLVE_EQUATION(a, b, c, "0");
+    result = SOLVE_EQUATION(a, b, c, "i");
+    result = solve_equation_accur(a, b, c, "I");
+  @endcode  
+
+  @subsection accur_default_sec Default accuracy
+
+  @warning
+  The default accuracy value is "l".
+
+  You can set the default accuracy as follows:
+  - use the solve_equation function;
+  - use the SOLVE_EQUATION macro with three arguments;
+  - pass NULL as the fourth argument to the solve_equation_accur function or the SOLVE_EQUATION macro;
+  - pass an empty string as the fourth argument to the solve_equation_accur function or the SOLVE_EQUATION macro.
+
+  The following expressions will set the default precision:
+
+  @code
+    result = SOLVE_EQUATION(a, b, c);
+    result = SOLVE_EQUATION(a, b, c, "");
+    result = SOLVE_EQUATION(a, b, c, NULL);
+    result = solve_equation_accur(a, b, c);
+    result = solve_equation_accur(a, b, c, "");
+    result = solve_equation_accur(a, b, c, NULL);
+  @endcode 
+
+  @subsection accur_error_sec Errors in setting accuracy
+
+  The accuracy argument is set correctly if at least one of the following conditions is met: 
+  - argument is equal to NULL or the empty string "";
+  - begins with the digit characters "0" to "9";
+  - begins with the characters "-" or "+" followed digit characters "0" to "9"
+  - begins with one of the symbols "i", "I", "f", "F", "d", "D", "l", "L", "z", "Z".
+
+  The first condition is used to set the default accuracy (@ref accur_default_sec). Conditions 2 
+  and 3 are used to define absolute accuracy (@ref accur_absolute_sec), while the last condition is 
+  used for relative accuracy (@ref accur_relative_sec). 
+  
+  If any of these conditions are not met, the function will return an Invalid Value error (@ref EquationResult). If the discriminant 
+  calculation is skipped (@ref main_without_discriminant_sec), then the accuracy value will not be used 
+  and no error will be reported, even if the accuracy argument is incorrect.
+
+  When specifying a relative accuracy, only the first character of the input string will be considered. 
+  When specifying an absolute accuracy, only those characters that can be converted to an integer with 
+  an absolute value less than LDBL_MAX_10_EXP will be used. Any other characters in the string will 
+  be disregarded.
+
+  @warning
+  Additional characters of the string do not return the Invalid Value error (@ref EquationResult), but may 
+  lead to incorrect results, as they will be interpreted in a manner different from the intended by the user.
+  Incorrect accuracy settings (as shown in the following examples) will not result in an Invalid Value 
+  error (@ref EquationResult): 
+
+
+  @code
+    int a = 1000;
+    float b = -0.01;
+    double c = 0.000000024;
+    EquationRoots result;
+    result = SOLVE_EQUATION(a, b, c, "ifd");          // accuracy "i" will be set, i.e. the absolute accuracy is zero
+    result = SOLVE_EQUATION(a, b, c, "i2f9d");        // accuracy "i" will be set, i.e. the absolute accuracy is zero
+    result = SOLVE_EQUATION(a, b, c, "2d");           // accuracy "2" will be set
+    result = SOLVE_EQUATION(a, b, c, "0.000000024");  // accuracy "0" will be set
+    result = SOLVE_EQUATION(a, b, c, "2.67");         // accuracy "2" will be set
+    result = SOLVE_EQUATION(a, b, c, "1e+3");         // accuracy "1" will be set
+    result = SOLVE_EQUATION(a, b, c, "-9");           // accuracy "-9" will be set
+  @endcode
+
+  In all these examples, there will be an erroneous result OneDoubleRoot with the root1 = root2 = 5e-6 + 0 * I, 
+  because the accuracy setting has been set too low, resulting in a value for the discriminant that is assumed 
+  to be zero. The correct way in this case is to set the accuracy to "9" or "d" - the highest accuracy among 
+  the coefficients (the correct result will be TwoRealRoots with root1 = 4e-6 + 0 * I and root2 = 6e-6 + 0 * I). 
+
+  It is possible to make a mistake by setting excessive accuracy. The following code demonstrates this:
+
+  @code
+    float a = 1e20;
+    float b = 2e18;
+    float c = 1e16;
+    EquationRoots result;
+    result = SOLVE_EQUATION(a, b, c, "i");        // accuracy "i" will be set, i.e. the absolute accuracy is zero
+    result = SOLVE_EQUATION(a, b, c, "d");        // accuracy "d" will be set
+    result = SOLVE_EQUATION(a, b, c, "16");       // the minus sign is missing
+  @endcode
+
+  In all these examples, there will be an erroneous result of TwoComplexRoots with the root1 = -0.01 + 3e6 * i 
+  and root2 = -0.01 + 3e6 * i. This is because the accuracy setting has been set too high, causing the discriminant 
+  not equal zero. The correct way in this case is to set the accuracy to "-16" or "d" - the highest accuracy among 
+  the coefficients (the correct result will be TwoRealRoots with root1 = root2 = -0,01 + 0 * I).
+
+*/

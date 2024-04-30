@@ -1141,9 +1141,9 @@ EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert_ldouble_eq(cimagl(result.root2), 0);
 
 #test huge_values_a_and_b_plus
-long double a = LDBL_MAX;
-long double b = LDBL_MAX;
-long double c = 1;
+long double a = -LDBL_MAX;
+long double b = -LDBL_MAX;
+long double c = -1;
 EquationRoots result = SOLVE_EQUATION(a, b, c);
   ck_assert(result.rootsNumber == TwoRealRoots);
   ck_assert_ldouble_eq(creall(result.root1), -1);

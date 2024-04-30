@@ -1,5 +1,6 @@
 // Copyright 2024 <Denis Malchenko (scimgeo)>
 // "https://github.com/denismalchenko"
+
 #ifndef SRC_QUADRATIC_EQUATION_H_
 #define SRC_QUADRATIC_EQUATION_H_
 
@@ -22,10 +23,12 @@ typedef struct {
 } EquationRoots;
 
 EquationRoots solve_equation(long double a, long double b, long double c);
+
 EquationRoots solve_equation_accur(long double a, long double b, long double c,
                                    const char *accuracy);
 
 #define GET_FUNCTION(_1, _2, _3, _4, NAME, ...) NAME
+
 #define SOLVE_EQUATION(...)                                             \
   GET_FUNCTION(__VA_ARGS__, solve_equation_accur, solve_equation, 0, 0) \
   (__VA_ARGS__)

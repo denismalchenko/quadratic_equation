@@ -1,0 +1,194 @@
+/**
+  @file src/quadratic_equation.h
+  @brief The header file of the Quadratic Equation module.
+
+  @details
+  Contains a description of functions for solving a quadratic equation,
+  including a description of types and structures. In addition, it contains a
+  macro overloading the call of these functions.
+ */
+/**
+  @file src/quadratic_equation.c
+  @brief 
+  The source file of the Quadratic Equation module. Contains the
+  implementation of the solve_equation and solve_equation_accur functions.
+ */
+/**
+  @defgroup quadratic_equation Quadratic Equation
+  @brief Module for solving a quadratic equation
+ */
+///@{
+/** 
+  @typedef EquationResult
+  @brief
+  A set of possible solutions for the quadratic equation. Use in EquationRoots
+  struct.
+  @details
+  Specifies the number and type of roots of the quadratic equation.
+  It is worth considering the case when an equation has one real root. This may 
+  occur:
+  - When the discriminant of the equation equals zero.
+  - When argument a=0, i.e., the equation degenerates into a linear equation.
+
+  In certain mathematical contexts, the first scenario is treated as equivalent
+  to two identical roots, whereas the second is always single root.
+  It may be important to differentiate between these scenarios, so the values
+  OneDoubleRoot and OnlyOneRoot are used for the two cases, respectively.
+ */
+/**
+  @var NoRoots
+  @brief The absence of any roots.
+  @details
+  - The case is realized for equations of the form \f$0x^2 + 0x + c = 0\f$
+  for \f$c \ne 0\f$.
+  - Real part of the returned roots contains NAN.
+  - Discriminant is not calculated.
+ */
+/**
+  @var OneDoubleRoot
+  @brief The equation has one double root.
+  @details
+  - This case occurs when the discriminant of the equation is zero.
+  - In this case, 2 identical real roots with a zero imaginary part are
+  returned.
+ */
+/**
+  @var OnlyOneRoot
+  @brief The equation has only one root.
+  @details
+  - The case is realized for equations of the form \f$0x^2 + bx + c = 0\f$
+  for \f$b \ne 0\f$.
+  - In this case, the first root has a zero imaginary part, and the
+  second has a real part that is NAN.
+  - Discriminant is not calculated.
+  - Root value is calculated using the formula \f$-\frac{c}{b}\f$
+ */
+/**
+  @var TwoRealRoots
+  @brief The equation has two real roots.
+  @details
+  - This case occurs when the discriminant of the equation is positive.
+  - In this case, both roots have zero imaginary parts.
+ */
+/**
+  @var TwoComplexRoots
+  @brief The equation has two complex roots.
+  @details
+  - This case occurs when the discriminant of the equation is negative.
+  - In this case, both roots have non-zero imaginary parts.
+ */
+/**
+  @var InfinityRoots
+  @brief The solution to the equation is any number.
+  @details
+  - The case is realized for equations of the form \f$0x^2 + 0x + 0 = 0\f$.
+  - In this case, the real part of the returned roots contains NAN.
+  - Discriminant is not calculated.
+ */
+/**
+  @var InvalidValue
+  @brief The equation is invalid.
+  @details
+  It can happen in two cases:
+  - At least one of the arguments of the equation a, b, c is equal to
+  infinity or nan.
+  - Invalid accuracy argument if discriminant is calculated
+
+  In both cases the real part of the returned roots contains NAN.
+ */
+
+/**
+  @struct EquationRoots
+  @brief
+  The structure of the return value of the solve_equation and
+  solve_equation_accur functions.
+  @details
+  It contains the value of a possible case of solving a quadratic equation and
+  two complex roots.
+  - In case rootsNumber is NoRoots, InfinityRoots or InvalidValue, the real
+  part of both roots contains NAN.
+  - In case rootsNumber is OnlyOneRoot
+    - The first root in the real part has a finite value, and the
+  imaginary part is equal to zero.
+    - The second root in the real part contains NAN.
+  - In other cases, the real and imaginary parts of roots are not NAN. And
+    - In case rootsNumber is OneDoubleRoot, real part of the both roots
+  are equal and the imaginary part is equal to zero.
+    - In case rootsNumber is TwoRealRoots, the real part of the first
+  roots less than that of the second, while the imaginary parts are both zero.
+    - In case rootsNumber is TwoComplexRoots, the real part of the both
+  roots are equal while the imaginary parts first root is negative and second
+  is positive and equal in magnitude.
+ */
+/**
+  @var EquationRoots::rootsNumber
+  @brief
+  One of the possible solutions for the quadratic equation.
+  @details
+  For more information, see @ref EquationResult.
+ */
+/**
+  @var EquationRoots::root1
+  @brief
+  The first complex root.
+  @details
+  The real part is no more than that of root2, and the imaginary
+  part is not positive.
+ */
+/**
+  @var EquationRoots::root2
+  @brief
+  The second complex root.
+  @details
+  The real part is no less than that of root1, and the imaginary
+  part is not negative.
+ */
+
+/**
+  @fn EquationRoots solve_equation(long double a, long double b, long double c);
+  @brief 
+  Function for solving a quadratic equation with default @ref accuracy
+  of calculating the discriminant.
+  @param a,b,c - coefficients of the equation in the form \f$ax^2 + bx + c =
+  0\f$.
+  @return Structure with the possible solutions of the equation and two
+  complex roots. For more information, see @ref EquationRoots.
+ */
+
+
+/**
+  @fn EquationRoots solve_equation_accur(long double a, long double b, long double c, const char *accuracy);
+  @brief 
+  Function for solving a quadratic equation with a given @ref accuracy of
+  calculating the discriminant.
+  @param a,b,c - coefficients of the equation in the form \f$ax^2 + bx + c =
+  0\f$.
+  @param accuracy - string with the accuracy of the calculation of the
+  discriminant. For more information, see @ref accuracy.
+  @return Structure with the possible solutions of the equation and two
+  complex roots. For more information, see @ref EquationRoots.
+ */
+
+
+/**
+  @def GET_FUNCTION
+  @brief 
+  Auxiliary macro for the SOLVE_EQUATION(...) macro.
+  @details
+  Counts the number of passed arguments (up to 4) and returns a value from a 
+  specified set based on that number. The numbers in the set follow in reverse order.
+ */
+
+/**
+  @def SOLVE_EQUATION
+  @brief
+  The macro overloads the solve_equation and solve_equation_accurate
+  functions.
+  
+  @details
+  When passed three arguments, it calls the solve_equation function.
+  When passed four arguments, it calls the solve_equation_accurate function.
+ */
+
+
+///@}
