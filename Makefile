@@ -31,8 +31,8 @@ C_FILES = $(SOURCES_DIR)/*.c $(HELPERS_DIR)/*.c
 H_FILES = $(SOURCES_DIR)/*.h $(HELPERS_DIR)/*.h
 MAIN_C_FILE = $(SOURCES_DIR)/quadratic_equation.c
 HELP_C_FILE = $(HELPERS_DIR)/quadeq_helpers.c
-DOXY_BRIEF = doxygen_brief.conf
-DOXY_FULL = doxygen_full.conf
+DOXY_BRIEF = brief/doxygen_brief.conf
+DOXY_FULL = full/doxygen_full.conf
 ICON = favicon.ico
 # build files
 TEST_C_FILE = $(BUILD_DIR)/test.c
@@ -46,16 +46,27 @@ TEST_TARGET = $(BUILD_DIR)/test.out
 GCOV_TARGET = $(GCOV_DIR)/gcov_test.out
 REPORT_TARGET = $(REPORTS_DIR)/index.html
 DOXY_TARGET = $(DOXY_DIR)/index.html
+DOXY_CONF = doxygen.conf
 # marco for generating doxygen documentation
-define gen_docs
-  @cp -r $(DOXY_SRC_DIR)/$(1) $(1)
-	@doxygen $(1)
-	@$(RM) $(1)
-	@cp -r $(DOXY_SRC_DIR)/$(ICON) $(DOXY_DIR)/$(ICON)
-	@echo "Documentation has been generated. You can access the documentation by opening $(DOXY_TARGET)"
-endef
 
-all: clean $(LIB_FILE) dvi
+all: $(LIB_FILE) dvi
+
+develop: clean gcov_report dvi_full
+
+rebuild: clean all
+
+check: $(TEST_TARGET)
+	$(TEST_TARGET)
+
+$(LIB_FILE): o_files
+	@ar rc $@ $(MAIN_O_FILE) $(HELP_O_FILE)
+	@ranlib $@
+
+$(TEST_TARGET): $(LIB_FILE)
+	@checkmk clean_mode=1 $(TEST_FILES) > $(TEST_C_FILE)
+	@$(CC) -c $(TEST_C_FILE) -o $(TEST_O_FILE)
+	@$(CC) $(GCOV_FLAGS) $(TEST_O_FILE) $(LIB_FILE) $(TEST_FLAGS) -o $(TEST_TARGET) $(LIBS_CHECK)
+	@$(RM) $(TEST_C_FILE)
 
 gcov_report: $(TEST_TARGET)
 	@$(MKDIR) $(GCOV_DIR) $(REPORTS_DIR)
@@ -73,26 +84,20 @@ else
 	@gcovr --html-details --html-self-contained -o $(REPORT_TARGET) $(GCOV_DIR)
 	@echo "Using gcovr for generating coverage reports. You can find it at $(REPORT_TARGET)"
 endif
-	
-
-check: $(TEST_TARGET)
-	$(TEST_TARGET)
-
-$(TEST_TARGET): $(LIB_FILE)
-	@checkmk clean_mode=1 $(TEST_FILES) > $(TEST_C_FILE)
-	@$(CC) -c $(TEST_C_FILE) -o $(TEST_O_FILE)
-	@$(CC) $(GCOV_FLAGS) $(TEST_O_FILE) $(LIB_FILE) $(TEST_FLAGS) -o $(TEST_TARGET) $(LIBS_CHECK)
-	@$(RM) $(TEST_C_FILE)
-
-$(LIB_FILE): o_files
-	@ar rc $@ $(MAIN_O_FILE) $(HELP_O_FILE)
-	@ranlib $@
 
 dvi:
-	$(call gen_docs,$(DOXY_BRIEF))
+	@cp -r $(DOXY_SRC_DIR)/$(DOXY_BRIEF) $(DOXY_CONF)
+	@$(MAKE) gen_docs
 
 dvi_full:
-	$(call gen_docs,$(DOXY_FULL)) 
+	@cp -r $(DOXY_SRC_DIR)/$(DOXY_FULL) $(DOXY_CONF)
+	@$(MAKE) gen_docs
+
+gen_docs:
+	@doxygen $(DOXY_CONF)
+	@$(RM) $(DOXY_CONF)
+	@cp -r $(DOXY_SRC_DIR)/$(ICON) $(DOXY_DIR)/$(ICON)
+	@echo "Documentation has been generated. You can access the documentation by opening $(DOXY_TARGET)"	
 
 o_files: $(MAIN_C_FILE) $(HELP_C_FILE)
 	@$(MKDIR) $(BUILD_DIR)
@@ -110,6 +115,4 @@ clangI:
 	clang-format -i -style=google $(C_FILES) $(H_FILES)
 	
 
-rebuild: all
-
-.PHONY: all rebuild o_files clean check gcov_report clang clangI dvi make_docs_dir
+.PHONY: all develop rebuild clean check gcov_report dvi dvi_full gen_docs o_files clang clangI 

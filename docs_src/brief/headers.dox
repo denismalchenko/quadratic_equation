@@ -11,7 +11,7 @@
   @file src/quadratic_equation.c
   @brief 
   The source file of the Quadratic Equation module. Contains the
-  implementation of the solve_equation and solve_equation_accur functions.
+  implementation of the @ref solve_equation and @ref solve_equation_accur functions.
  */
 /**
   @defgroup quadratic_equation Quadratic Equation
@@ -33,7 +33,7 @@
   In certain mathematical contexts, the first scenario is treated as equivalent
   to two identical roots, whereas the second is always single root.
   It may be important to differentiate between these scenarios, so the values
-  OneDoubleRoot and OnlyOneRoot are used for the two cases, respectively.
+  @ref OneDoubleRoot and @ref OnlyOneRoot are used for the two cases, respectively.
  */
 /**
   @var NoRoots
@@ -100,23 +100,23 @@
 /**
   @struct EquationRoots
   @brief
-  The structure of the return value of the solve_equation and
-  solve_equation_accur functions.
+  The structure of the return value of the @ref solve_equation and
+  @ref solve_equation_accur functions.
   @details
   It contains the value of a possible case of solving a quadratic equation and
   two complex roots.
-  - In case rootsNumber is NoRoots, InfinityRoots or InvalidValue, the real
+  - In case rootsNumber is @ref NoRoots, @ref InfinityRoots or @ref InvalidValue, the real
   part of both roots contains NAN.
-  - In case rootsNumber is OnlyOneRoot
+  - In case rootsNumber is @ref OnlyOneRoot
     - The first root in the real part has a finite value, and the
   imaginary part is equal to zero.
     - The second root in the real part contains NAN.
   - In other cases, the real and imaginary parts of roots are not NAN. And
-    - In case rootsNumber is OneDoubleRoot, real part of the both roots
+    - In case rootsNumber is @ref OneDoubleRoot, real part of the both roots
   are equal and the imaginary part is equal to zero.
-    - In case rootsNumber is TwoRealRoots, the real part of the first
+    - In case rootsNumber is @ref TwoRealRoots, the real part of the first
   roots less than that of the second, while the imaginary parts are both zero.
-    - In case rootsNumber is TwoComplexRoots, the real part of the both
+    - In case rootsNumber is @ref TwoComplexRoots, the real part of the both
   roots are equal while the imaginary parts first root is negative and second
   is positive and equal in magnitude.
  */
@@ -182,12 +182,12 @@
 /**
   @def SOLVE_EQUATION
   @brief
-  The macro overloads the solve_equation and solve_equation_accurate
+  The macro overloads the @ref solve_equation and @ref solve_equation_accur
   functions.
   
   @details
-  When passed three arguments, it calls the solve_equation function.
-  When passed four arguments, it calls the solve_equation_accurate function.
+  When passed three arguments, it calls the @ref solve_equation function.
+  When passed four arguments, it calls the @ref solve_equation_accur function.
  */
 
 

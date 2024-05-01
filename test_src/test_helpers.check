@@ -134,7 +134,7 @@ int res = check_accuracy(accuracy, &epsilon);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
 #test check_accuracy_number_PLUS0
-char accuracy[] = "+0";
+char accuracy[] = "+000";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
@@ -142,7 +142,7 @@ int res = check_accuracy(accuracy, &epsilon);
   ck_assert_int_eq(epsilon.value.ten_power, 0);
 
 #test check_accuracy_number_MINUS0
-char accuracy[] = "-0";
+char accuracy[] = "-0000000000";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
@@ -158,7 +158,7 @@ int res = check_accuracy(accuracy, &epsilon);
   ck_assert_int_eq(epsilon.value.ten_power, 1);
 
 #test check_accuracy_number_PLUS2
-char accuracy[] = "+2";
+char accuracy[] = "+002";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
@@ -190,7 +190,7 @@ int res = check_accuracy(accuracy, &epsilon);
   ck_assert_int_eq(epsilon.value.ten_power, 98);
 
 #test check_accuracy_number_MINUS67
-char accuracy[] = "-67";
+char accuracy[] = "-00000000000000000000000000000000067";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
@@ -246,31 +246,31 @@ int res = check_accuracy(accuracy, &epsilon);
   ck_assert_int_eq(epsilon.value.ten_power, -3597);
 
 #test check_accuracy_number_MAX
-char accuracy[] = "4932";
+char accuracy[] = "4931";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
-  ck_assert_int_eq(epsilon.value.ten_power, 4932);
+  ck_assert_int_eq(epsilon.value.ten_power, 4931);
 
 #test check_accuracy_number_PLUS_MAX
-char accuracy[] = "+4932";
+char accuracy[] = "+4931";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
-  ck_assert_int_eq(epsilon.value.ten_power, 4932);
+  ck_assert_int_eq(epsilon.value.ten_power, 4931);
 
 #test check_accuracy_number_MINUS_MAX
-char accuracy[] = "-4932";
+char accuracy[] = "-4931";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
   ck_assert(epsilon.type == NUMBER_PRECISION);
-  ck_assert_int_eq(epsilon.value.ten_power, -4932);
+  ck_assert_int_eq(epsilon.value.ten_power, -4931);
 
 #test check_accuracy_number_MORE_MAX
-char accuracy[] = "4933";
+char accuracy[] = "4932";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
@@ -278,7 +278,7 @@ int res = check_accuracy(accuracy, &epsilon);
   ck_assert(epsilon.value.precision == 'l');
 
 #test check_accuracy_number_MINUS_MORE_MAX
-char accuracy[] = "-4933";
+char accuracy[] = "-4932";
 Accuracy epsilon;
 int res = check_accuracy(accuracy, &epsilon);
   ck_assert(res == 0);
